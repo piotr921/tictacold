@@ -9,6 +9,7 @@ import java.util.Map;
 import static org.testng.Assert.*;
 
 public class SecondIterationTests {
+
     @Test
     public void createSymbolTest() {
         String x = "X";
@@ -34,7 +35,7 @@ public class SecondIterationTests {
 
     @Test
     public void symbolsAddTest() {
-        Tiles tiles = new Tiles();
+        Tiles tiles = new Tiles(3);
         tiles.add(1, "X");
         tiles.add(2, "X");
 
@@ -46,7 +47,7 @@ public class SecondIterationTests {
 
     @Test
     public void symbolsOverwritingFieldsTest() {
-        Tiles tiles = new Tiles();
+        Tiles tiles = new Tiles(3);
         tiles.add(1, "X");
         tiles.add(1, "O");
 
@@ -57,7 +58,7 @@ public class SecondIterationTests {
 
     @DataProvider(name = "dataOneTileTest")
     public Object[][] dataOneTileTest() {
-        Tiles tiles = new Tiles();
+        Tiles tiles = new Tiles(3);
         tiles.add(1, "X");
         tiles.add(1, "O");
         return new Object[][] {
@@ -72,7 +73,7 @@ public class SecondIterationTests {
 
     @Test
     public void getTakenTilesNumber() {
-        Tiles tiles = new Tiles();
+        Tiles tiles = new Tiles(3);
         tiles.add(1, "X");
         tiles.add(2, "X");
         assertEquals(tiles.takenTilesNumber(), 2);

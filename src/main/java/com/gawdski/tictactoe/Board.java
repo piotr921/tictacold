@@ -7,9 +7,13 @@ class Board {
     private String currentPlayer;
 
 
-    public Board() {
+    public Board(int boardSize) {
         this.currentPlayer = "X";
-        createEmptyBoard();
+        tiles = new Tiles(boardSize);
+    }
+
+    boolean areFieldsEqual(int fieldId, Symbol symbol) {
+        return symbol.equals(tiles.getTile(fieldId));
     }
 
     //TODO: prepare a String ready to print with this method instead
@@ -88,11 +92,7 @@ class Board {
         return false;
     }
 
-    public void createEmptyBoard() {
-        tiles = new Tiles();
-    }
-
-    public long takenTiles() {
+    long takenTiles() {
         return tiles.takenTilesNumber();
     }
 
@@ -101,11 +101,11 @@ class Board {
         return tiles;
     }
 
-    public Symbol getTile(int tile) {
+    Symbol getTile(int tile) {
         return tiles.getTile(tile);
     }
 
-    public void printBoard() {
+    void printBoard() {
         tiles.getBoardLayout().forEach((k, v) -> {
             System.out.printf("|%s", Symbol.getString(v));
             if(k % 3 == 0) {

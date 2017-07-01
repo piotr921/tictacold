@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class App {
     public static void main( String[] args ) {
-        Board board = new Board();
+        Board board = new Board(3);
         Scanner scanner = new Scanner(System.in);
         while(!board.isGameFinished()) {
             board.printBoard();

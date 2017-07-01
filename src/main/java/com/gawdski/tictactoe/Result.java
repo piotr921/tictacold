@@ -1,54 +1,96 @@
 package com.gawdski.tictactoe;
 
-public class Result {
-    public boolean gameWon(Board board) {
-        //TODO: implement an actual algorithm
-        //TODO: remove magic numbers ;_;
-        //TODO: extract methods
-        if (board.takenTiles() < 3) return false;
+class Result {
 
-        //TODO: check horizontally, refactor later
-        //initial i = 1, while i % 3 != 0
-        Symbol winningSymbol;
-        for (int i = 1; i <= 9; i += 3) {
-            winningSymbol = board.getTile(i);
-            if (!winningSymbol.equals(Symbol.EMPTY)) {
-                int j = i;
-                for (int k = i + 1; k < i + 3; k++) {
-                    if (board.getTile(k).equals(winningSymbol)) j++;
-                    else j--;
-                }
-                if (j == i + 2) return true;
-            }
-        }
-        //TODO: check vertically
-        for (int i = 1; i <= 3; i++) {
-            winningSymbol = board.getTile(i);
-            if (!winningSymbol.equals(Symbol.EMPTY)) {
-                int j = i;
-                for (int k = i + 3; k <= i + 6; k += 3) {
-                    if (board.getTile(k).equals(winningSymbol)) j += 3;
-                    else j -= 3;
-                }
-                if (j == i + 6) return true;
-            }
-        }
-        //TODO: check diagonally
-        winningSymbol = board.getTile(1);
-        if(!winningSymbol.equals(Symbol.EMPTY)) {
-            for (int i = 1; i <= 9; i += 4) {
-                if (!board.getTile(i).equals(winningSymbol)) break;
-                if(i == 9) return true;
-            }
-        }
+    // TODO: for now board size is equal to winning condition
+    private final int boardSize;
+    private final int firstElementOnBoardId = 1;
+    private Symbol winningSymbol;
 
-        winningSymbol = board.getTile(3);
-        if(!winningSymbol.equals(Symbol.EMPTY)) {
-            for (int i = 3; i <= 7; i+=2) {
-                if(!board.getTile(i).equals(winningSymbol)) break;
-                if(i == 7) return true;
+    public Result(int size) {
+        this.boardSize = size;
+    }
+
+    boolean gameWon(Board board) {
+
+        if (board.takenTiles() > boardSize) {
+            for (int firstFieldInRowId = firstElementOnBoardId; firstFieldInRowId <= boardSize * boardSize;
+                 firstFieldInRowId += boardSize) {
+                if (winInRow(board, firstFieldInRowId)) return true;
+            }
+
+            for (int firstFieldInColumnId = firstElementOnBoardId; firstFieldInColumnId <= boardSize; firstFieldInColumnId++) {
+                if (winInColumn(board, firstFieldInColumnId)) return true;
+            }
+
+            return winInDiagonal(board, firstElementOnBoardId) || winInDiagonal(board, boardSize);
+        }
+        return false;
+    }
+
+    private boolean winInDiagonal(Board board, int startingField) {
+
+        winningSymbol = board.getTile(startingField);
+        if (!winningSymbol.equals(Symbol.EMPTY)) {
+            int counts = 0;
+            for (int elementOnDiagonal = 0; elementOnDiagonal < boardSize; elementOnDiagonal++) {
+                int currentElementId = getCalculateCurrentElementId(elementOnDiagonal, startingField);
+                if (board.areFieldsEqual(currentElementId, winningSymbol)){
+                    counts++;
+                }
+                if (counts == boardSize) {
+                    return true;
+                }
             }
         }
         return false;
+    }
+
+    private boolean winInRow(Board board, int firstFieldInRowId) {
+
+        winningSymbol = board.getTile(firstFieldInRowId);
+        // todo: change when not all fields in row will be necessary to win
+        if (!winningSymbol.equals(Symbol.EMPTY)) {
+            int counts = 1;
+            for (int fieldInRow = firstFieldInRowId + 1; fieldInRow < firstFieldInRowId + boardSize; fieldInRow++) {
+                if (board.areFieldsEqual(fieldInRow, winningSymbol)) {
+                    counts++;
+                }
+            }
+            if (counts == boardSize) return true;
+        }
+        return false;
+    }
+
+    private boolean winInColumn(Board board, int firstFieldInColumnId) {
+
+        winningSymbol = board.getTile(firstFieldInColumnId);
+        // todo: change when not all fields in column will be necessary to win
+        if (!winningSymbol.equals(Symbol.EMPTY)) {
+            int counts = 1;
+            for (int fieldInColumn = firstFieldInColumnId + boardSize; fieldInColumn <= boardSize * boardSize;
+                 fieldInColumn += boardSize) {
+                if (board.areFieldsEqual(fieldInColumn, winningSymbol)) {
+                    counts++;
+                }
+            }
+            if (counts == boardSize) return true;
+        }
+        return false;
+    }
+
+    private int getCalculateCurrentElementId(int elementOnDiagonal, int startingPoint) {
+        return startingPoint + elementOnDiagonal * calculateDistanceBetweenFieldsOnDiagonal(startingPoint);
+    }
+
+    private int calculateDistanceBetweenFieldsOnDiagonal(int startingPoint) {
+
+        if (startingPoint == firstElementOnBoardId) {
+            return boardSize + 1;
+        } else if (startingPoint == boardSize) {
+            return boardSize - 1;
+        } else {
+            return boardSize;
+        }
     }
 }

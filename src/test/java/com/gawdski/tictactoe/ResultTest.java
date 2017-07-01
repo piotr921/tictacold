@@ -1,0 +1,44 @@
+package com.gawdski.tictactoe;
+
+import com.gawdski.tictactoe.providers.BoardDataProvider;
+import org.testng.annotations.Test;
+
+import java.util.List;
+import java.util.stream.IntStream;
+
+import static org.testng.Assert.assertEquals;
+
+public class ResultTest {
+
+    @Test(dataProvider = "regularBoardProvider", dataProviderClass = BoardDataProvider.class)
+    public void gameWinningOnRegularBoardTest(List<String> symbols, boolean expected, String checkedCase) {
+
+        // Given
+        Result winnerFinder = new Result(3);
+        Board board = new Board(3);
+        // -1, because tiles are indexed 1-9, symbols are indexed 0-8
+        IntStream.range(1, 10).boxed().forEach(integer -> board.move(integer, symbols.get(integer - 1)));
+
+        // When
+        boolean result = winnerFinder.gameWon(board);
+
+        // Then
+        assertEquals(result, expected, checkedCase);
+    }
+
+    @Test(dataProvider = "bigBoardProvider", dataProviderClass = BoardDataProvider.class)
+    public void gameWinningOnBiggerBoardTest(List<String> symbols, boolean expected, String checkedCase) {
+
+        // Given
+        Result winnerFinder = new Result(5);
+        Board board = new Board(5);
+        // -1, because tiles are indexed 1-25, symbols are indexed 0-24
+        IntStream.range(1, 26).boxed().forEach(integer -> board.move(integer, symbols.get(integer - 1)));
+
+        // When
+        boolean result = winnerFinder.gameWon(board);
+
+        // Then
+        assertEquals(result, expected, checkedCase);
+    }
+}

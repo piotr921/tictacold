@@ -9,9 +9,10 @@ import static org.testng.Assert.*;
 
 @Test
 public class FirstIterationTests {
+
     @Test
     public void testBoardInitialization() {
-        Board board = new Board();
+        Board board = new Board(3);
         Map<Integer, Symbol> boardLayout = board.getBoardLayout();
         Map<Integer, Symbol> expected = getEmptyBoard();
         assertEquals(boardLayout, expected);
@@ -19,7 +20,7 @@ public class FirstIterationTests {
 
     @Test
     public void testUserInputStored() {
-        Board board = new Board();
+        Board board = new Board(3);
         board.move(1, "X");
         board.move(3, "X");
         Map<Integer, Symbol> boardLayout = board.getBoardLayout();
@@ -32,7 +33,7 @@ public class FirstIterationTests {
 
     @Test
     public void testOverwritingTile() {
-        Board board = new Board();
+        Board board = new Board(3);
         board.move(1, "X");
         board.move(1, "O");
         Map<Integer, Symbol> boardLayout = board.getBoardLayout();
@@ -54,7 +55,7 @@ public class FirstIterationTests {
 
     @Test
     public void winningConditionTest() {
-        Board board = new Board();
+        Board board = new Board(3);
         board.move(1, "X");
         board.move(2, "X");
         assertFalse(board.isGameFinished());
@@ -69,7 +70,7 @@ public class FirstIterationTests {
 
     @Test
     public void anotherWinningTest() {
-        Board board = new Board();
+        Board board = new Board(3);
         board.move(3, "O");
         board.move(5, "O");
         board.move(7, "O");

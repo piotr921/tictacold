@@ -6,10 +6,11 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class ThirdIterationTests {
+
     @Test
     public void getGameResultLessThanThreeMoves() {
-        Result result = new Result();
-        Board board = new Board();
+        Result result = new Result(3);
+        Board board = new Board(3);
         board.move(1, "X");
         board.move(2, "O");
         assertFalse(result.gameWon(board));
@@ -20,20 +21,20 @@ public class ThirdIterationTests {
 
     @Test
     public void newAlgorithmHorizontalTest() {
-        Result result = new Result();
-        Board board = new Board();
+        Result result = new Result(3);
+        Board board = new Board(3);
         board.move(1, "X");
         board.move(2, "X");
         board.move(3, "X");
         assertTrue(result.gameWon(board));
 
-        board.createEmptyBoard();
+        board = new Board(3);
         board.move(4, "X");
         board.move(5, "X");
         board.move(6, "O");
         assertFalse(result.gameWon(board));
 
-        board.createEmptyBoard();
+        board = new Board(3);
         board.move(7, "O");
         board.move(8, "X");
         board.move(9, "X");
@@ -42,20 +43,20 @@ public class ThirdIterationTests {
 
     @Test
     public void newAlgorithmVerticalTest() {
-        Result result = new Result();
-        Board board = new Board();
+        Result result = new Result(3);
+        Board board = new Board(3);
         board.move(1, "X");
         board.move(4, "X");
         board.move(7, "X");
         assertTrue(result.gameWon(board));
 
-        board.createEmptyBoard();
+        board = new Board(3);
         board.move(2, "X");
         board.move(5, "O");
         board.move(8, "X");
         assertFalse(result.gameWon(board));
 
-        board.createEmptyBoard();
+        board = new Board(3);
         board.move(1, "X");
         board.move(4, "X");
         board.move(7, "O");
@@ -64,20 +65,20 @@ public class ThirdIterationTests {
 
     @Test
     public void newAlgorithmDiagonalTest() {
-        Result result = new Result();
-        Board board = new Board();
+        Result result = new Result(3);
+        Board board = new Board(3);
         board.move(1, "X");
         board.move(5, "X");
         board.move(9, "X");
         assertTrue(result.gameWon(board));
 
-        board.createEmptyBoard();
+        board = new Board(3);
         board.move(3, "X");
         board.move(5, "X");
         board.move(7, "X");
         assertTrue(result.gameWon(board));
 
-        board.createEmptyBoard();
+        board = new Board(3);
         board.move(1, "O");
         board.move(5, "X");
         board.move(9, "O");

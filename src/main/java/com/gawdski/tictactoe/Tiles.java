@@ -3,32 +3,32 @@ package com.gawdski.tictactoe;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Tiles {
+class Tiles {
     private Map<Integer, Symbol> symbols;
 
-    public Tiles() {
+    Tiles(int boardSize) {
         symbols = new HashMap<>();
-        for(int i = 1; i <= 9; i++) {
+        for(int i = 1; i <= boardSize * boardSize; i++) {
             symbols.put(i, Symbol.EMPTY);
         }
     }
 
-    public void add(int tile, String symbol) {
+    void add(int tile, String symbol) {
         if (symbols.get(tile).equals(Symbol.EMPTY)) {
             symbols.put(tile, Symbol.getSymbol(symbol));
         }
     }
 
-    public Symbol getTile(int tile) {
+    Symbol getTile(int tile) {
         //TODO: should throw an exception if the tile is invalid
         return symbols.get(tile);
     }
 
-    public long takenTilesNumber() {
+    long takenTilesNumber() {
         return symbols.entrySet().stream().filter(x -> !x.getValue().equals(Symbol.EMPTY)).count();
     }
 
-    public Map<Integer, Symbol> getBoardLayout() {
+    Map<Integer, Symbol> getBoardLayout() {
         return symbols;
     }
 }
