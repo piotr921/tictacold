@@ -3,10 +3,19 @@ package com.gawdski.tictactoe;
 import java.util.Scanner;
 
 public class App {
-    public static void main( String[] args ) {
-        Board board = new Board(3);
+
+    public static void main(String[] args) {
+
+        InitializationEngine initializationEngine = new InitializationEngine();
+        Board board = new Board(initializationEngine.getSelectedBoardSize());
+        Players players = new Players();
+        players.initializePlayers(
+                initializationEngine.getSelectedStartingSymbol(),
+                initializationEngine.getSelectedStartingPlayerName(),
+                initializationEngine.getSelectedSecondPlayerName());
         Scanner scanner = new Scanner(System.in);
-        while(!board.isGameFinished()) {
+
+        while (!board.isGameFinished()) {
             board.printBoard();
             System.out.println("Tile number: ");
             int move = Integer.parseInt(scanner.nextLine());

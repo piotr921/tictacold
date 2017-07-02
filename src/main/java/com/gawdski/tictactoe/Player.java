@@ -1,31 +1,18 @@
 package com.gawdski.tictactoe;
 
-public class Player {
+class Player {
 
     private String name;
     private Symbol symbol;
+    private int score;
 
-    Player(String name) {
+    public Player(String name, Symbol symbol) {
         this.name = name;
-    }
-
-    Player(Symbol symbol) {
         this.symbol = symbol;
+        this.score = 0;
     }
 
-    void setName(String name) {
-        this.name = name;
-    }
-
-    String getName() {
-        return name;
-    }
-
-    public Symbol getSymbol() {
-        return symbol;
-    }
-
-    public void setSymbol(Symbol symbol) {
-        this.symbol = symbol;
+    String scoreInfo(){
+        return this.name + ": " + this.score;
     }
 }
