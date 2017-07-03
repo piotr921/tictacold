@@ -38,8 +38,19 @@ class PolishLanguage implements Communicable {
     }
 
     @Override
+    public Integer askPlayerForFieldId(Player player) {
+        System.out.println(String.format("%s, proszę wybierz pole", player.getName()));
+        return integerInputReader.read();
+    }
+
+    @Override
     public Integer askWinningCondition() {
         System.out.println("Proszę wprowadzić ilość znaków pod rząd, która zapewnie wygraną: ");
         return integerInputReader.read();
+    }
+
+    @Override
+    public void informAboutUnavailableField() {
+        System.err.println("Wybrane pole jest niedostępne, proszę wybierz inne.");
     }
 }

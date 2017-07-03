@@ -16,4 +16,8 @@ class Players {
         players.add(0, new Player(player1Name, startingSymbol));
         players.add(1, new Player(player2Name, Symbol.getOppositeSymbol(startingSymbol)));
     }
+
+    Player getPlayerForMove(int moveId) {
+        return players.get(moveId % players.size());
+    }
 }

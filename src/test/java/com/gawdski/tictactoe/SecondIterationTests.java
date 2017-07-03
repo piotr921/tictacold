@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 
 public class SecondIterationTests {
 
-    @Test
+/*    @Test
     public void createSymbolTest() {
         String x = "X";
         String o = "O";
@@ -85,5 +85,5 @@ public class SecondIterationTests {
             expected.put(i, Symbol.EMPTY);
         }
         return expected;
-    }
+    }*/
 }

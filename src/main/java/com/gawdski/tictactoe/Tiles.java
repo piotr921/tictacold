@@ -13,10 +13,8 @@ class Tiles {
         }
     }
 
-    void add(int tile, String symbol) {
-        if (symbols.get(tile).equals(Symbol.EMPTY)) {
-            symbols.put(tile, Symbol.getSymbol(symbol));
-        }
+    void add(int tile, Symbol symbol) {
+        symbols.put(tile, symbol);
     }
 
     Symbol getTile(int tile) {

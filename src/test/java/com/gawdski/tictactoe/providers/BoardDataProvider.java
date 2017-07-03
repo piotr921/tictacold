@@ -6,140 +6,20 @@ import java.util.Arrays;
 
 public class BoardDataProvider {
 
-    @DataProvider(name = "regularBoardProvider")
-    public static Object[][] boardProvider() {
+    @DataProvider(name = "FieldAvailabilityTest")
+    public static Object[][] fieldAvailabilityTest(){
+        return new Object[][] {
+                //field is free
+                {9, Arrays.asList(1,2,3), 4, true},
+                {16, Arrays.asList(1,2,3), 4, true},
 
-        return new Object[][]{
+                // field occupied
+                {9, Arrays.asList(1,2,3), 1, false},
+                {16, Arrays.asList(11,12,13), 11, false},
 
-                // horizontal wins
-                {Arrays.asList("X", "X", "X", "O", "X", "O", "X", "O", "O"), true, "Win on first row;"},
-                {Arrays.asList("O", "X", "O", "X", "X", "X", "X", "O", "O"), true, "Win on second row;"},
-                {Arrays.asList("O", "X", "O", "X", "O", "O", "X", "X", "X"), true, "Win on third row;"},
-
-                // vertical wins
-                {Arrays.asList("X", "O", "O", "X", "O", "X", "X", "X", "O"), true, "Win on first column;"},
-                {Arrays.asList("O", "X", "O", "O", "X", "X", "X", "X", "O"), true, "Win on second column;"},
-                {Arrays.asList("O", "O", "X", "O", "X", "X", "X", "O", "X"), true, "Win on third column;"},
-
-                // diagonal wins
-                {Arrays.asList("X", "O", "O", "O", "X", "X", "O", "X", "X"), true, "Win on 1-9 diagonal;"},
-                {Arrays.asList("O", "O", "X", "X", "X", "O", "X", "X", "O"), true, "Win on 3-7 diagonal;"},
-
-                // no win
-                {Arrays.asList("X", "O", "X", "O", "O", "X", "X", "X", "O"), false, "All fields, no winner;"},
-                {Arrays.asList("X", "", "", "", "", "", "", "", "O"), false, "not enough fields;"}
-        };
-    }
-
-    @DataProvider(name = "bigBoardProvider")
-    public static Object[][] bigBoardProvider() {
-
-        return new Object[][]{
-
-                // region horizontal wins
-                {Arrays.asList(
-                        "X", "X", "X", "X", "X",
-                        "X", "X", "O", "O", "O",
-                        "O", "X", "O", "X", "O",
-                        "O", "X", "X", "O", "X",
-                        "O", "X", "O", "O", "X"), true, "Win on first row;"},
-
-                {Arrays.asList(
-                        "X", "O", "O", "O", "X",
-                        "X", "X", "X", "X", "X",
-                        "O", "X", "O", "X", "O",
-                        "O", "X", "O", "O", "X",
-                        "O", "X", "O", "X", "O"), true, "Win on second row;"},
-
-                {Arrays.asList(
-                        "O", "X", "O", "X", "O",
-                        "O", "X", "X", "O", "O",
-                        "X", "X", "X", "X", "X",
-                        "O", "X", "O", "O", "O",
-                        "O", "X", "O", "X", "O"), true, "Win on third row;"},
-
-                {Arrays.asList(
-                        "O", "X", "O", "X", "O",
-                        "O", "X", "O", "X", "O",
-                        "O", "O", "X", "O", "X",
-                        "X", "X", "X", "X", "X",
-                        "O", "X", "O", "X", "O"), true, "Win on fourth row;"},
-
-                {Arrays.asList(
-                        "O", "X", "O", "X", "O",
-                        "O", "X", "O", "X", "O",
-                        "X", "O", "X", "O", "X",
-                        "O", "X", "O", "X", "O",
-                        "X", "X", "X", "X", "X"), true, "Win on fifth row;"},
-                // endregion
-
-                // region vertical wins
-                {Arrays.asList(
-                        "X", "O", "X", "O", "X",
-                        "X", "O", "O", "X", "X",
-                        "X", "X", "O", "X", "O",
-                        "X", "O", "X", "O", "X",
-                        "X", "O", "O", "X", "O"), true, "Win on first column;"},
-
-                {Arrays.asList(
-                        "O", "X", "X", "O", "X",
-                        "O", "X", "O", "X", "X",
-                        "X", "X", "O", "X", "O",
-                        "O", "X", "X", "O", "X",
-                        "O", "X", "O", "X", "O"), true, "Win on second column;"},
-
-                {Arrays.asList(
-                        "O", "X", "X", "O", "X",
-                        "O", "O", "X", "X", "X",
-                        "X", "O", "X", "X", "O",
-                        "O", "X", "X", "O", "X",
-                        "O", "O", "X", "X", "O"), true, "Win on third column;"},
-
-                {Arrays.asList(
-                        "O", "X", "O", "X", "X",
-                        "O", "O", "X", "X", "X",
-                        "X", "O", "X", "X", "O",
-                        "O", "X", "O", "X", "X",
-                        "O", "O", "X", "X", "O"), true, "Win on fourth column;"},
-
-                {Arrays.asList(
-                        "O", "X", "O", "X", "X",
-                        "O", "O", "X", "X", "X",
-                        "X", "O", "X", "O", "X",
-                        "O", "X", "O", "X", "X",
-                        "O", "O", "X", "O", "X"), true, "Win on fifth column;"},
-                // endregion
-
-                // region diagonal wins
-                {Arrays.asList(
-                        "O", "O", "X", "O", "X",
-                        "X", "O", "O", "X", "X",
-                        "X", "X", "O", "X", "O",
-                        "X", "O", "X", "O", "X",
-                        "X", "O", "O", "X", "O"), true, "Win on 1-25 diagonal;"},
-
-                {Arrays.asList(
-                        "X", "O", "X", "X", "O",
-                        "X", "O", "O", "O", "X",
-                        "X", "X", "O", "X", "O",
-                        "X", "O", "X", "O", "X",
-                        "O", "O", "O", "X", "O"), true, "Win on 5-21 diagonal;"},
-                //endregion
-
-                // region no win
-                {Arrays.asList(
-                        "X", "O", "X", "X", "O",
-                        "X", "O", "O", "O", "X",
-                        "X", "X", "X", "X", "O",
-                        "X", "O", "X", "O", "X",
-                        "O", "O", "O", "X", "O"), false, "All fields, no winner;"},
-                {Arrays.asList(
-                        "X", "", "", "", "",
-                        "", "", "", "O", "",
-                        "X", "", "", "", "",
-                        "", "", "", "O", "",
-                        "", "", "", "", ""), false, "not enough fields;"}
-                // endregion
+                // field outside board
+                {9, Arrays.asList(1,2,3), 11, false},
+                {16, Arrays.asList(1,2,3), 36, false},
         };
     }
 }

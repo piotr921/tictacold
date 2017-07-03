@@ -9,7 +9,7 @@ import static org.testng.Assert.*;
 
 @Test
 public class FirstIterationTests {
-
+/*
     @Test
     public void testBoardInitialization() {
         Board board = new Board(3);
@@ -83,6 +83,6 @@ public class FirstIterationTests {
             expected.put(i, Symbol.EMPTY);
         }
         return expected;
-    }
+    }*/
 
 }

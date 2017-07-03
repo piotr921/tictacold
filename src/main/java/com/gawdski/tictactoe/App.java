@@ -13,17 +13,14 @@ public class App {
                 messanger.askForStartingSymbol(),
                 messanger.askPlayer1ForName(),
                 messanger.askPlayer2ForName());
-        // todo: remove from main
-        Scanner scanner = new Scanner(System.in);
 
+        GameEngine gameEngine = new GameEngine(players);
+        int moveId = 0;
+
+        board.printBoard();
         while (!board.isGameFinished()) {
-            board.printBoard();
-            System.out.println("Tile number: ");
-            int move = Integer.parseInt(scanner.nextLine());
-            System.out.println(move);
-            System.out.println("Symbol: ");
-            String symbol = scanner.nextLine();
-            board.move(move, symbol);
+           gameEngine.makeMove(board,moveId,messanger);
+           moveId++;
         }
         board.printBoard();
     }

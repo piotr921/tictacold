@@ -4,12 +4,25 @@ import java.util.Map;
 
 class Board {
     private Tiles tiles;
-    private String currentPlayer;
+    private int boardSize;
+    //private String currentPlayer;
 
 
     public Board(int boardSize) {
-        this.currentPlayer = "X";
+        this.boardSize = boardSize;
         tiles = new Tiles(boardSize);
+    }
+
+    boolean isFieldAvailable(int fieldId) {
+        return isFieldOnBoard(fieldId) && isFieldEmpty(fieldId);
+    }
+
+    private boolean isFieldOnBoard(int fieldId) {
+        return fieldId > 0 && fieldId <= boardSize;
+    }
+
+    private boolean isFieldEmpty(int fieldId) {
+        return tiles.getTile(fieldId) == Symbol.EMPTY;
     }
 
     boolean areFieldsEqual(int fieldId, Symbol symbol) {
@@ -21,14 +34,12 @@ class Board {
         return tiles.getBoardLayout();
     }
 
-    void move(int tile, String symbol) {
-        if (tiles.getTile(tile).equals(Symbol.EMPTY)) {
-            tiles.add(tile, symbol);
-//            swapPlayers();
-        }
+    void move(int tile, Symbol playerSymbol) {
+        tiles.add(tile, playerSymbol);
+
     }
 
-    String getCurrentPlayer() {
+/*    String getCurrentPlayer() {
         return currentPlayer;
     }
 
@@ -38,7 +49,7 @@ class Board {
         } else {
             this.currentPlayer = "X";
         }
-    }
+    }*/
 
     boolean isGameFinished() {
         //TODO: probably this method will be deleted completely very soon
@@ -51,11 +62,11 @@ class Board {
                     return true;
                 }
             }
-            if(tiles.getTile(2).equals(winningSymbol)) {
-                if(tiles.getTile(3).equals(winningSymbol)) return true;
+            if (tiles.getTile(2).equals(winningSymbol)) {
+                if (tiles.getTile(3).equals(winningSymbol)) return true;
             }
-            if(tiles.getTile(4).equals(winningSymbol)) {
-                if(tiles.getTile(7).equals(winningSymbol)) return true;
+            if (tiles.getTile(4).equals(winningSymbol)) {
+                if (tiles.getTile(7).equals(winningSymbol)) return true;
             }
         }
         winningSymbol = tiles.getTile(2);
@@ -108,7 +119,7 @@ class Board {
     void printBoard() {
         tiles.getBoardLayout().forEach((k, v) -> {
             System.out.printf("|%s", Symbol.getString(v));
-            if(k % 3 == 0) {
+            if (k % boardSize == 0) {
                 System.out.print("|");
                 System.out.println();
             }

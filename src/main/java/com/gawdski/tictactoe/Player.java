@@ -12,6 +12,14 @@ class Player {
         this.score = 0;
     }
 
+    String getName() {
+        return name;
+    }
+
+    public Symbol getSymbol() {
+        return symbol;
+    }
+
     String scoreInfo(){
         return this.name + ": " + this.score;
     }

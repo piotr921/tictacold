@@ -14,5 +14,9 @@ interface Communicable {
 
     Integer askForBoardSize(int minSize, int maxSize);
 
+    Integer askPlayerForFieldId(Player player);
+
     Integer askWinningCondition();
+
+    void informAboutUnavailableField();
 }

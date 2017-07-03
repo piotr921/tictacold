@@ -38,8 +38,19 @@ class EnglishLanguage implements Communicable {
     }
 
     @Override
+    public Integer askPlayerForFieldId(Player player) {
+        System.out.println(String.format("%s, please select field", player.getName()));
+        return integerInputReader.read();
+    }
+
+    @Override
     public Integer askWinningCondition() {
         System.out.println("Please communicable how many symbols in line provide win: ");
         return integerInputReader.read();
+    }
+
+    @Override
+    public void informAboutUnavailableField() {
+        System.err.println("Selected field is unavailable, please select another one.");
     }
 }

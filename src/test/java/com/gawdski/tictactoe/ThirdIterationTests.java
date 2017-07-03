@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class ThirdIterationTests {
 
-    @Test
+ /*   @Test
     public void getGameResultLessThanThreeMoves() {
         Result result = new Result(3);
         Board board = new Board(3);
@@ -83,5 +83,5 @@ public class ThirdIterationTests {
         board.move(5, "X");
         board.move(9, "O");
         assertFalse(result.gameWon(board));
-    }
+    }*/
 }
