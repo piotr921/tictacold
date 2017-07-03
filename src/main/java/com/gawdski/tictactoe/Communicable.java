@@ -12,7 +12,7 @@ interface Communicable {
 
     Symbol askForStartingSymbol();
 
-    Integer askForBoardSize();
+    Integer askForBoardSize(int minSize, int maxSize);
 
     Integer askWinningCondition();
 }

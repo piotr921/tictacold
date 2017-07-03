@@ -1,6 +1,6 @@
 package com.gawdski.tictactoe;
 
-public class PolishLanguage implements Communicable {
+class PolishLanguage implements Communicable {
 
     private InputReader<String> stringInputReader = new StringReader();
     private InputReader<Integer> integerInputReader = new IntegerReader();
@@ -25,9 +25,16 @@ public class PolishLanguage implements Communicable {
     }
 
     @Override
-    public Integer askForBoardSize() {
-        System.out.println("Proszę wprowadzić rozmiar planszy (dozwolne są liczby z zakresu 2-1000): ");
-        return integerInputReader.read();
+    public Integer askForBoardSize(int minSize, int maxSize) {
+        System.out.println(String.format("Proszę wprowadzić rozmiar planszy (dozwolne są liczby z zakresu %d-%d): ", minSize, maxSize));
+        Integer boardSize = 0;
+        while (boardSize < minSize || boardSize > maxSize) {
+            boardSize = integerInputReader.read();
+            if (boardSize < minSize || boardSize > maxSize) {
+                System.out.println("Wartość spoza zakresu, wprowadź inną liczbę.");
+            }
+        }
+        return boardSize;
     }
 
     @Override

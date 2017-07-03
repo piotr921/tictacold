@@ -6,13 +6,14 @@ public class App {
 
     public static void main(String[] args) {
 
-        InitializationEngine initializationEngine = new InitializationEngine();
-        Board board = new Board(initializationEngine.getSelectedBoardSize());
+        Communicable messanger = InitializationEngine.selectLangClass();
+        Board board = new Board(messanger.askForBoardSize(2, 1000));
         Players players = new Players();
         players.initializePlayers(
-                initializationEngine.getSelectedStartingSymbol(),
-                initializationEngine.getSelectedStartingPlayerName(),
-                initializationEngine.getSelectedSecondPlayerName());
+                messanger.askForStartingSymbol(),
+                messanger.askPlayer1ForName(),
+                messanger.askPlayer2ForName());
+        // todo: remove from main
         Scanner scanner = new Scanner(System.in);
 
         while (!board.isGameFinished()) {
