@@ -8,6 +8,10 @@ class Board {
     //private String currentPlayer;
 
 
+    public int getBoardSize() {
+        return boardSize;
+    }
+
     public Board(int boardSize) {
         this.boardSize = boardSize;
         tiles = new Tiles(boardSize);
@@ -23,6 +27,10 @@ class Board {
 
     private boolean isFieldEmpty(int fieldId) {
         return tiles.getTile(fieldId) == Symbol.EMPTY;
+    }
+
+    boolean areFreeFieldsOnBoard(){
+        return tiles.takenTilesNumber() == boardSize;
     }
 
     boolean areFieldsEqual(int fieldId, Symbol symbol) {
@@ -103,12 +111,8 @@ class Board {
         return false;
     }
 
-    long takenTiles() {
-        return tiles.takenTilesNumber();
-    }
-
     public Tiles getTiles() {
-        //TODO: temporary method used in Result, need to refactor that
+        //TODO: temporary method used in WinnerChecker, need to refactor that
         return tiles;
     }
 

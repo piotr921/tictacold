@@ -9,7 +9,7 @@ public class ThirdIterationTests {
 
  /*   @Test
     public void getGameResultLessThanThreeMoves() {
-        Result result = new Result(3);
+        WinnerChecker result = new WinnerChecker(3);
         Board board = new Board(3);
         board.move(1, "X");
         board.move(2, "O");
@@ -21,7 +21,7 @@ public class ThirdIterationTests {
 
     @Test
     public void newAlgorithmHorizontalTest() {
-        Result result = new Result(3);
+        WinnerChecker result = new WinnerChecker(3);
         Board board = new Board(3);
         board.move(1, "X");
         board.move(2, "X");
@@ -43,7 +43,7 @@ public class ThirdIterationTests {
 
     @Test
     public void newAlgorithmVerticalTest() {
-        Result result = new Result(3);
+        WinnerChecker result = new WinnerChecker(3);
         Board board = new Board(3);
         board.move(1, "X");
         board.move(4, "X");
@@ -65,7 +65,7 @@ public class ThirdIterationTests {
 
     @Test
     public void newAlgorithmDiagonalTest() {
-        Result result = new Result(3);
+        WinnerChecker result = new WinnerChecker(3);
         Board board = new Board(3);
         board.move(1, "X");
         board.move(5, "X");

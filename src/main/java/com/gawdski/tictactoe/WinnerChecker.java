@@ -1,17 +1,21 @@
 package com.gawdski.tictactoe;
 
-class Result {
+class WinnerChecker {
 
     // TODO: for now board size is equal to winning condition
     private final int boardSize;
     private final int firstElementOnBoardId = 1;
     private Symbol winningSymbol;
 
-    public Result(int size) {
+    WinnerChecker(int size) {
         this.boardSize = size;
     }
 
-    boolean gameWon(Board board) {
+    GameState checkGameState(Board board) {
+        return gameWon(board) ? GameState.selectGameState(String.valueOf(winningSymbol)) : GameState.NO_WIN;
+    }
+
+    private boolean gameWon(Board board) {
 
         if (board.takenTiles() > boardSize) {
             for (int firstFieldInRowId = firstElementOnBoardId; firstFieldInRowId <= boardSize * boardSize;

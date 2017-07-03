@@ -2,9 +2,11 @@ package com.gawdski.tictactoe;
 
 class GameEngine {
 
-    Players players;
+    private Players players;
+    private Board board;
 
-    public GameEngine(Players players) {
+    GameEngine(Board board, Players players) {
+        this.board = board;
         this.players = players;
     }
 
@@ -22,5 +24,17 @@ class GameEngine {
         }
         board.move(selectedField, player.getSymbol());
         board.printBoard();
+    }
+
+    boolean isGameFinished(){
+        boolean finished = false;
+        WinnerChecker winnerChecker = new WinnerChecker(board.getBoardSize());
+        GameState state = winnerChecker.checkGameState(board);
+        if (state == GameState.X_WIN || state == GameState.O_WIN) {
+            finished = true;
+        } else {
+            finished = board.areFreeFieldsOnBoard();
+        }
+        return finished;
     }
 }

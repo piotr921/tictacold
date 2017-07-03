@@ -14,11 +14,11 @@ public class App {
                 messanger.askPlayer1ForName(),
                 messanger.askPlayer2ForName());
 
-        GameEngine gameEngine = new GameEngine(players);
+        GameEngine gameEngine = new GameEngine(board, players);
         int moveId = 0;
 
         board.printBoard();
-        while (!board.isGameFinished()) {
+        while (!gameEngine.isGameFinished()) {
            gameEngine.makeMove(board,moveId,messanger);
            moveId++;
         }
