@@ -9,6 +9,7 @@ import static org.testng.Assert.assertEquals;
 
 public class BoardTest {
 
+
     @Test(dataProvider = "FieldAvailabilityTest", dataProviderClass = BoardDataProvider.class)
     public void fieldAvailabilityTest(int boardSize, List<Integer> occupiedFields, int fieldId, boolean expected){
 

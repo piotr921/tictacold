@@ -1,5 +1,6 @@
-package com.gawdski.tictactoe.providers;
+package com.gawdski.tictactoe;
 
+import com.gawdski.tictactoe.GameState;
 import org.testng.annotations.DataProvider;
 
 import java.util.Arrays;
@@ -12,22 +13,22 @@ public class ResultTestDataProvider {
         return new Object[][]{
 
                 // horizontal wins
-                {Arrays.asList("X", "X", "X", "O", "X", "O", "X", "O", "O"), true, "Win on first row;"},
-                {Arrays.asList("O", "X", "O", "X", "X", "X", "X", "O", "O"), true, "Win on second row;"},
-                {Arrays.asList("O", "X", "O", "X", "O", "O", "X", "X", "X"), true, "Win on third row;"},
+                {Arrays.asList("X", "X", "X", "O", "X", "O", "X", "O", "O"), GameState.X_WIN, "Win on first row;"},
+                {Arrays.asList("O", "X", "O", "X", "X", "X", "X", "O", "O"), GameState.X_WIN, "Win on second row;"},
+                {Arrays.asList("O", "X", "O", "X", "O", "O", "X", "X", "X"), GameState.X_WIN, "Win on third row;"},
 
                 // vertical wins
-                {Arrays.asList("X", "O", "O", "X", "O", "X", "X", "X", "O"), true, "Win on first column;"},
-                {Arrays.asList("O", "X", "O", "O", "X", "X", "X", "X", "O"), true, "Win on second column;"},
-                {Arrays.asList("O", "O", "X", "O", "X", "X", "X", "O", "X"), true, "Win on third column;"},
+                {Arrays.asList("X", "O", "O", "X", "O", "X", "X", "X", "O"), GameState.X_WIN, "Win on first column;"},
+                {Arrays.asList("O", "X", "O", "O", "X", "X", "X", "X", "O"), GameState.X_WIN, "Win on second column;"},
+                {Arrays.asList("O", "O", "X", "O", "X", "X", "X", "O", "X"), GameState.X_WIN, "Win on third column;"},
 
                 // diagonal wins
-                {Arrays.asList("X", "O", "O", "O", "X", "X", "O", "X", "X"), true, "Win on 1-9 diagonal;"},
-                {Arrays.asList("O", "O", "X", "X", "X", "O", "X", "X", "O"), true, "Win on 3-7 diagonal;"},
+                {Arrays.asList("X", "O", "O", "O", "X", "X", "O", "X", "X"), GameState.X_WIN, "Win on 1-9 diagonal;"},
+                {Arrays.asList("O", "O", "X", "X", "X", "O", "X", "X", "O"), GameState.X_WIN, "Win on 3-7 diagonal;"},
 
                 // no win
-                {Arrays.asList("X", "O", "X", "O", "O", "X", "X", "X", "O"), false, "All fields, no winner;"},
-                {Arrays.asList("X", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "O"), false, "not enough fields;"}
+                {Arrays.asList("X", "O", "X", "O", "O", "X", "X", "X", "O"), GameState.NO_WIN, "All fields, no winner;"},
+                {Arrays.asList("X", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "O"), GameState.NO_WIN, "not enough fields;"}
         };
     }
 
@@ -42,35 +43,35 @@ public class ResultTestDataProvider {
                         "X", "X", "O", "O", "O",
                         "O", "X", "O", "X", "O",
                         "O", "X", "X", "O", "X",
-                        "O", "X", "O", "O", "X"), true, "Win on first row;"},
+                        "O", "X", "O", "O", "X"), GameState.X_WIN, "Win on first row;"},
 
                 {Arrays.asList(
                         "X", "O", "O", "O", "X",
                         "X", "X", "X", "X", "X",
                         "O", "X", "O", "X", "O",
                         "O", "X", "O", "O", "X",
-                        "O", "X", "O", "X", "O"), true, "Win on second row;"},
+                        "O", "X", "O", "X", "O"), GameState.X_WIN, "Win on second row;"},
 
                 {Arrays.asList(
                         "O", "X", "O", "X", "O",
                         "O", "X", "X", "O", "O",
                         "X", "X", "X", "X", "X",
                         "O", "X", "O", "O", "O",
-                        "O", "X", "O", "X", "O"), true, "Win on third row;"},
+                        "O", "X", "O", "X", "O"), GameState.X_WIN, "Win on third row;"},
 
                 {Arrays.asList(
                         "O", "X", "O", "X", "O",
                         "O", "X", "O", "X", "O",
                         "O", "O", "X", "O", "X",
                         "X", "X", "X", "X", "X",
-                        "O", "X", "O", "X", "O"), true, "Win on fourth row;"},
+                        "O", "X", "O", "X", "O"), GameState.X_WIN, "Win on fourth row;"},
 
                 {Arrays.asList(
                         "O", "X", "O", "X", "O",
                         "O", "X", "O", "X", "O",
                         "X", "O", "X", "O", "X",
                         "O", "X", "O", "X", "O",
-                        "X", "X", "X", "X", "X"), true, "Win on fifth row;"},
+                        "X", "X", "X", "X", "X"), GameState.X_WIN, "Win on fifth row;"},
                 // endregion
 
                 // region vertical wins
@@ -79,35 +80,35 @@ public class ResultTestDataProvider {
                         "X", "O", "O", "X", "X",
                         "X", "X", "O", "X", "O",
                         "X", "O", "X", "O", "X",
-                        "X", "O", "O", "X", "O"), true, "Win on first column;"},
+                        "X", "O", "O", "X", "O"), GameState.X_WIN, "Win on first column;"},
 
                 {Arrays.asList(
                         "O", "X", "X", "O", "X",
                         "O", "X", "O", "X", "X",
                         "X", "X", "O", "X", "O",
                         "O", "X", "X", "O", "X",
-                        "O", "X", "O", "X", "O"), true, "Win on second column;"},
+                        "O", "X", "O", "X", "O"), GameState.X_WIN, "Win on second column;"},
 
                 {Arrays.asList(
                         "O", "X", "X", "O", "X",
                         "O", "O", "X", "X", "X",
                         "X", "O", "X", "X", "O",
                         "O", "X", "X", "O", "X",
-                        "O", "O", "X", "X", "O"), true, "Win on third column;"},
+                        "O", "O", "X", "X", "O"), GameState.X_WIN, "Win on third column;"},
 
                 {Arrays.asList(
                         "O", "X", "O", "X", "X",
                         "O", "O", "X", "X", "X",
                         "X", "O", "X", "X", "O",
                         "O", "X", "O", "X", "X",
-                        "O", "O", "X", "X", "O"), true, "Win on fourth column;"},
+                        "O", "O", "X", "X", "O"), GameState.X_WIN, "Win on fourth column;"},
 
                 {Arrays.asList(
                         "O", "X", "O", "X", "X",
                         "O", "O", "X", "X", "X",
                         "X", "O", "X", "O", "X",
                         "O", "X", "O", "X", "X",
-                        "O", "O", "X", "O", "X"), true, "Win on fifth column;"},
+                        "O", "O", "X", "O", "X"), GameState.X_WIN, "Win on fifth column;"},
                 // endregion
 
                 // region diagonal wins
@@ -116,14 +117,14 @@ public class ResultTestDataProvider {
                         "X", "O", "O", "X", "X",
                         "X", "X", "O", "X", "O",
                         "X", "O", "X", "O", "X",
-                        "X", "O", "O", "X", "O"), true, "Win on 1-25 diagonal;"},
+                        "X", "O", "O", "X", "O"), GameState.O_WIN, "Win on 1-25 diagonal;"},
 
                 {Arrays.asList(
                         "X", "O", "X", "X", "O",
                         "X", "O", "O", "O", "X",
                         "X", "X", "O", "X", "O",
                         "X", "O", "X", "O", "X",
-                        "O", "O", "O", "X", "O"), true, "Win on 5-21 diagonal;"},
+                        "O", "O", "O", "X", "O"), GameState.O_WIN, "Win on 5-21 diagonal;"},
                 //endregion
 
                 // region no win
@@ -132,13 +133,13 @@ public class ResultTestDataProvider {
                         "X", "O", "O", "O", "X",
                         "X", "X", "X", "X", "O",
                         "X", "O", "X", "O", "X",
-                        "O", "O", "O", "X", "O"), false, "All fields, no winner;"},
+                        "O", "O", "O", "X", "O"), GameState.NO_WIN, "All fields, no winner;"},
                 {Arrays.asList(
                         "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
                         "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
                         "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
                         "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
-                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), false, "not enough fields;"}
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.NO_WIN, "not enough fields;"}
                 // endregion
         };
     }

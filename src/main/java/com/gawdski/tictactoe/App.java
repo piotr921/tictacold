@@ -1,7 +1,5 @@
 package com.gawdski.tictactoe;
 
-import java.util.Scanner;
-
 public class App {
 
     public static void main(String[] args) {
@@ -19,9 +17,8 @@ public class App {
 
         board.printBoard();
         while (!gameEngine.isGameFinished()) {
-           gameEngine.makeMove(board,moveId,messanger);
-           moveId++;
+            gameEngine.makeMove(board, moveId, messanger);
+            moveId++;
         }
-        board.printBoard();
     }
 }

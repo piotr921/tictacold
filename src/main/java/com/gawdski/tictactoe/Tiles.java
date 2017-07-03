@@ -2,15 +2,15 @@ package com.gawdski.tictactoe;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 class Tiles {
     private Map<Integer, Symbol> symbols;
 
     Tiles(int boardSize) {
         symbols = new HashMap<>();
-        for(int i = 1; i <= boardSize * boardSize; i++) {
-            symbols.put(i, Symbol.EMPTY);
-        }
+        IntStream.range(1,boardSize*boardSize+1).forEach(
+                integer -> symbols.put(integer, Symbol.EMPTY));
     }
 
     void add(int tile, Symbol symbol) {

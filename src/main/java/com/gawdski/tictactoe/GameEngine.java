@@ -26,15 +26,11 @@ class GameEngine {
         board.printBoard();
     }
 
-    boolean isGameFinished(){
-        boolean finished = false;
-        WinnerChecker winnerChecker = new WinnerChecker(board.getBoardSize());
+    boolean isGameFinished() {
+        boolean finished;
+        WinnerChecker winnerChecker = new WinnerChecker(board.getBoardSideLength());
         GameState state = winnerChecker.checkGameState(board);
-        if (state == GameState.X_WIN || state == GameState.O_WIN) {
-            finished = true;
-        } else {
-            finished = board.areFreeFieldsOnBoard();
-        }
+        finished = state == GameState.X_WIN || state == GameState.O_WIN || board.isWholeBoardOccupied();
         return finished;
     }
 }
