@@ -53,4 +53,11 @@ class PolishLanguage implements Communicable {
     public void informAboutUnavailableField() {
         System.err.println("Wybrane pole jest niedostępne, proszę wybierz inne.");
     }
+
+    @Override
+    public void informAboutResult(String winnerName, String player1Name, String player1Symbol, int player1Score,
+                                  String player2Name, String player2Symbol, int player2Score) {
+        System.out.println(String.format("Wygrywa: %s. %s(%s): %d - %s(%s): %d ", winnerName, player1Name, player1Symbol, player1Score,
+                player2Name, player2Symbol, player2Score));
+    }
 }

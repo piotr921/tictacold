@@ -14,11 +14,13 @@ public class App {
 
         GameEngine gameEngine = new GameEngine(board, players);
         int moveId = 0;
-
         board.printBoard();
+
         while (!gameEngine.isGameFinished()) {
             gameEngine.makeMove(board, moveId, messanger);
             moveId++;
         }
+        gameEngine.updatePoints();
+        gameEngine.displayCurrentResult(messanger);
     }
 }

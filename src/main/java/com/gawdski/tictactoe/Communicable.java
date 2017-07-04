@@ -19,4 +19,7 @@ interface Communicable {
     Integer askWinningCondition();
 
     void informAboutUnavailableField();
+
+    void informAboutResult(String winnerName, String player1Name, String player1Symbol, int player1Score,
+                           String player2Name, String player2Symbol, int player2Score);
 }
