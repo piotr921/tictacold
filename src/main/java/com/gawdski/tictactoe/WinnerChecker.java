@@ -9,10 +9,10 @@ class WinnerChecker {
     private final int firstElementOnBoardId = 1;
     private Symbol winningSymbol;
 
-    WinnerChecker(int size) {
+    WinnerChecker(int size, int needToWin) {
         this.boardHeight = size;
         this.boardWidth = size;
-        this.needToWin = size;
+        this.needToWin = needToWin;
     }
 
     GameState checkGameState(Board board) {
@@ -31,37 +31,57 @@ class WinnerChecker {
                 if (winInColumn(board, firstFieldInColumnId)) return true;
             }
 
-            return winInDiagonal(board, firstElementOnBoardId) || winInDiagonal(board, boardWidth);
+            //return winInDiagonal(board, firstElementOnBoardId) || winInDiagonal(board, boardWidth);
+            return winInRightDiagonal(board, firstElementOnBoardId) || wonInDiagonalFromRowReverse(board, boardWidth);
         }
         return false;
     }
 
     private boolean winInRow(Board board, int firstFieldInRowId) {
-
-        winningSymbol = board.getTile(firstFieldInRowId);
-        if (!winningSymbol.equals(Symbol.EMPTY)) {
-            int counts = 1;
-            for (int fieldInRow = firstFieldInRowId + 1; fieldInRow < firstFieldInRowId + boardWidth; fieldInRow++) {
-                if (board.areFieldsEqual(fieldInRow, winningSymbol)) {
-                    counts++;
+        int fieldId = firstFieldInRowId;
+        boolean win = false;
+        while (fieldId < firstFieldInRowId + boardWidth) {
+            if (board.getTile(fieldId) != Symbol.EMPTY) {
+                winningSymbol = board.getTile(fieldId);
+                int symbolsInRow = 0;
+                while (board.getTile(fieldId) == winningSymbol) {
+                    fieldId++;
+                    symbolsInRow++;
                 }
+                if (symbolsInRow >= needToWin) {
+                    win = true;
+                    break;
+                }
+            } else {
+                fieldId++;
             }
-            if (counts == needToWin) return true;
         }
-        return false;
-/*        for (int fieldId = firstFieldInRowId; fieldId <= firstFieldInRowId + boardWidth; fieldId++) {
-            winningSymbol = board.getTile(firstFieldInRowId);
-            if (!winningSymbol.equals(Symbol.EMPTY)){
-                int counts = 1;
-
-            }
-        }*/
+        return win;
     }
 
     private boolean winInColumn(Board board, int firstFieldInColumnId) {
+        int fieldId = firstFieldInColumnId;
+        boolean win = false;
+        while (fieldId < boardWidth * boardHeight) {
+            if (board.getTile(fieldId) != Symbol.EMPTY) {
+                winningSymbol = board.getTile(fieldId);
+                int symbolsInRow = 0;
+                while (board.getTile(fieldId) == winningSymbol) {
+                    fieldId += boardWidth;
+                    symbolsInRow++;
+                }
+                if (symbolsInRow >= needToWin) {
+                    win = true;
+                    break;
+                }
+            } else {
+                fieldId += boardWidth;
+            }
+        }
+        return win;
+    }
 
-        winningSymbol = board.getTile(firstFieldInColumnId);
-        // todo: change when not all fields in column will be necessary to win
+/*        winningSymbol = board.getTile(firstFieldInColumnId);
         if (!winningSymbol.equals(Symbol.EMPTY)) {
             int counts = 1;
             for (int fieldInColumn = firstFieldInColumnId + boardWidth; fieldInColumn <= boardWidth * boardHeight;
@@ -73,6 +93,81 @@ class WinnerChecker {
             if (counts == needToWin) return true;
         }
         return false;
+        } */
+
+    // diagonal going to right side of board
+    private boolean winInRightDiagonal(Board board, int firstElementInRow) {
+
+        boolean foundWin = false;
+        while (firstElementInRow < boardWidth * boardHeight) {
+            if (wonInDiagonalFromRow(board, firstElementInRow)) {
+                foundWin = true;
+                break;
+            } else {
+                firstElementInRow += boardWidth;
+            }
+        }
+        return foundWin;
+    }
+
+    private boolean wonInDiagonalFromRow(Board board, int firstElementInRow) {
+        int elementInDiagonalId = firstElementInRow;
+        boolean win = false;
+        while (elementInDiagonalId < (firstElementInRow / boardWidth) * boardWidth + (needToWin - 1)){
+            if (board.getTile(elementInDiagonalId) != Symbol.EMPTY) {
+                int count = 0;
+                winningSymbol = board.getTile(elementInDiagonalId);
+                while (board.getTile(elementInDiagonalId) == winningSymbol) {
+                    count++;
+                    elementInDiagonalId += calculateDistanceBetweenFieldsOnDiagonal(firstElementOnBoardId);
+                }
+                if (count >= needToWin) {
+                    win = true;
+                    break;
+                }
+            } else {
+                elementInDiagonalId++;
+            }
+        }
+        return win;
+    }
+
+    // diagonal going to left side of board
+    private boolean winInLeftDiagonal(Board board, int firstElementInColumn) {
+
+        boolean foundWin = false;
+        while (firstElementInColumn < boardWidth * boardHeight) {
+            if (wonInDiagonalFromRowReverse(board, firstElementInColumn)) {
+                foundWin = true;
+                break;
+            } else {
+                firstElementInColumn += boardWidth;
+            }
+        }
+        return foundWin;
+    }
+
+    private boolean wonInDiagonalFromRowReverse(Board board, int lastElementInRow) {
+        int elementInDiagonalId = lastElementInRow;
+        boolean win = false;
+        // todo: make it better
+        while (elementInDiagonalId > (lastElementInRow - boardWidth)){
+            if (board.getTile(elementInDiagonalId) != Symbol.EMPTY) {
+                int count = 0;
+                winningSymbol = board.getTile(elementInDiagonalId);
+                while (board.getTile(elementInDiagonalId) == winningSymbol) {
+                    count++;
+                    elementInDiagonalId += calculateDistanceBetweenFieldsOnDiagonal(boardWidth);
+                }
+                if (count >= needToWin) {
+                    win = true;
+                    break;
+                }
+            } else {
+                elementInDiagonalId--;
+            }
+        }
+        return win;
     }
 
     private boolean winInDiagonal(Board board, int startingField) {

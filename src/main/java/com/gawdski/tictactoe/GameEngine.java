@@ -29,7 +29,7 @@ class GameEngine {
 
     boolean isGameFinished() {
         boolean finished;
-        WinnerChecker winnerChecker = new WinnerChecker(board.getBoardSideLength());
+        WinnerChecker winnerChecker = new WinnerChecker(board.getBoardSideLength(), board.getBoardSideLength());
         gameState = winnerChecker.checkGameState(board);
         finished = gameState == GameState.X_WIN || gameState == GameState.O_WIN || board.isWholeBoardOccupied();
         return finished;

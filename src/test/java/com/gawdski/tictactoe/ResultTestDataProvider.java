@@ -1,6 +1,5 @@
 package com.gawdski.tictactoe;
 
-import com.gawdski.tictactoe.GameState;
 import org.testng.annotations.DataProvider;
 
 import java.util.Arrays;
@@ -140,6 +139,295 @@ public class ResultTestDataProvider {
                         "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
                         "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
                         "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.NO_WIN, "not enough fields;"}
+                // endregion
+        };
+    }
+
+    @DataProvider(name = "needToWinProvider")
+    public static Object[][] needToWinProvider() {
+        return new Object[][]{
+
+                // region win in row
+                {Arrays.asList(
+                        "X", "X", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in first row;"},
+                {Arrays.asList(
+                        "EMPTY", "X", "X", "X", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in first row, in the middle;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "X", "X", "X", "EMPTY", "EMPTY",
+                        "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in second row;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "X",
+                        "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in second row, in the end;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "X", "X", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in third row;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "X", "X", "X", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in third row, in the middle;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "O", "O", "X",
+                        "X", "X", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "X", "X", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in fourth row;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "O", "O", "X",
+                        "X", "X", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "X", "X",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in fourth row, in the end;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "O", "O", "X",
+                        "X", "X", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "X", "X", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in fifth row;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "O", "O", "X",
+                        "X", "X", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "X", "X"), GameState.X_WIN, "win in fourth row, in the end;"},
+                // endregion
+
+                //region win in column
+                {Arrays.asList(
+                        "O", "X", "O", "EMPTY", "EMPTY",
+                        "O", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "O", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "X", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.O_WIN, "win in first column;"},
+                {Arrays.asList(
+                        "X", "X", "O", "EMPTY", "EMPTY",
+                        "O", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "O", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "O", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.O_WIN, "win in first column, in the middle;"},
+                {Arrays.asList(
+                        "X", "O", "O", "EMPTY", "EMPTY",
+                        "O", "O", "EMPTY", "O", "EMPTY",
+                        "X", "O", "EMPTY", "EMPTY", "EMPTY",
+                        "O", "X", "EMPTY", "O", "EMPTY",
+                        "X", "X", "EMPTY", "EMPTY", "EMPTY"), GameState.O_WIN, "win in second column;"},
+                {Arrays.asList(
+                        "X", "X", "O", "EMPTY", "EMPTY",
+                        "O", "X", "EMPTY", "O", "EMPTY",
+                        "X", "O", "EMPTY", "EMPTY", "EMPTY",
+                        "O", "O", "EMPTY", "O", "EMPTY",
+                        "X", "O", "EMPTY", "EMPTY", "EMPTY"), GameState.O_WIN, "win in second column, in the end;"},
+                {Arrays.asList(
+                        "X", "EMPTY", "O", "EMPTY", "X",
+                        "O", "EMPTY", "O", "O", "EMPTY",
+                        "X", "EMPTY", "O", "EMPTY", "EMPTY",
+                        "O", "EMPTY", "X", "O", "EMPTY",
+                        "X", "EMPTY", "X", "EMPTY", "EMPTY"), GameState.O_WIN, "win in third column;"},
+                {Arrays.asList(
+                        "X", "EMPTY", "X", "EMPTY", "X",
+                        "O", "EMPTY", "O", "O", "EMPTY",
+                        "X", "EMPTY", "O", "EMPTY", "EMPTY",
+                        "O", "EMPTY", "O", "O", "EMPTY",
+                        "X", "EMPTY", "X", "EMPTY", "EMPTY"), GameState.O_WIN, "win in third column, in the middle;"},
+                {Arrays.asList(
+                        "X", "EMPTY", "X", "O", "X",
+                        "O", "X", "EMPTY", "O", "EMPTY",
+                        "X", "O", "EMPTY", "O", "EMPTY",
+                        "O", "O", "EMPTY", "X", "EMPTY",
+                        "X", "EMPTY", "O", "X", "EMPTY"), GameState.O_WIN, "win in fourth column;"},
+                {Arrays.asList(
+                        "X", "EMPTY", "O", "X", "X",
+                        "O", "X", "EMPTY", "X", "EMPTY",
+                        "X", "O", "EMPTY", "O", "EMPTY",
+                        "O", "O", "EMPTY", "O", "EMPTY",
+                        "X", "EMPTY", "O", "O", "EMPTY"), GameState.O_WIN, "win in fourth column, int he end;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "X", "X", "O",
+                        "O", "X", "EMPTY", "EMPTY", "O",
+                        "X", "O", "EMPTY", "EMPTY", "O",
+                        "O", "O", "EMPTY", "EMPTY", "X",
+                        "X", "EMPTY", "O", "EMPTY", "X"), GameState.O_WIN, "win in fifth column;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "X", "X", "O",
+                        "O", "X", "EMPTY", "EMPTY", "X",
+                        "X", "O", "EMPTY", "EMPTY", "O",
+                        "O", "O", "EMPTY", "EMPTY", "O",
+                        "X", "EMPTY", "O", "EMPTY", "O"), GameState.O_WIN, "win in fifth column, in the end;"},
+                // endregion
+
+                // region win in diagonal
+                {Arrays.asList(
+                        "X", "EMPTY", "X", "X", "O",
+                        "O", "X", "EMPTY", "EMPTY", "O",
+                        "X", "O", "X", "EMPTY", "O",
+                        "O", "O", "EMPTY", "EMPTY", "X",
+                        "X", "EMPTY", "O", "EMPTY", "X"), GameState.X_WIN, "win in 1-25 diagonal, start at 1;"},
+                {Arrays.asList(
+                        "O", "X", "X", "O", "O",
+                        "O", "O", "X", "EMPTY", "O",
+                        "X", "O", "X", "X", "EMPTY",
+                        "O", "X", "EMPTY", "EMPTY", "X",
+                        "EMPTY", "EMPTY", "O", "EMPTY", "X"), GameState.X_WIN, "win in 1-25 diagonal, start at 2;"},
+                {Arrays.asList(
+                        "O", "O", "X", "O", "O",
+                        "O", "O", "X", "X", "O",
+                        "X", "EMPTY", "X", "X", "EMPTY",
+                        "O", "X", "EMPTY", "EMPTY", "X",
+                        "EMPTY", "EMPTY", "O", "EMPTY", "X"), GameState.X_WIN, "win in 1-25 diagonal, start at 3;"},
+                {Arrays.asList(
+                        "O", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "X", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "O"), GameState.X_WIN, "win in 1-25 diagonal, start at 6;"},
+                {Arrays.asList(
+                        "O", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "X", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "X", "O"), GameState.X_WIN, "win in 1-25 diagonal, start at 7;"},
+                {Arrays.asList(
+                        "O", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "X", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "X",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "O"), GameState.X_WIN, "win in 1-25 diagonal, start at 8;"},
+                {Arrays.asList(
+                        "EMPTY", "O", "EMPTY", "O", "O",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "X", "X", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "X", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY"), GameState.X_WIN, "win in 1-25 diagonal, start at 11;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "X", "X", "EMPTY", "EMPTY", "X",
+                        "EMPTY", "O", "X", "O", "EMPTY",
+                        "EMPTY", "EMPTY", "O", "X", "O"), GameState.X_WIN, "win in 1-25 diagonal, start at 12;"},
+                {Arrays.asList(
+                        "O", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "O", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "X", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "X"), GameState.X_WIN, "win in 1-25 diagonal, start at 13;"},
+                // second diagonal
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "X",
+                        "EMPTY", "EMPTY", "EMPTY", "X", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "O", "EMPTY", "EMPTY", "EMPTY",
+                        "O", "EMPTY", "EMPTY", "EMPTY", "O"), GameState.X_WIN, "win in 6-19 diagonal, start at 5;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "X", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "X", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "O",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "O"), GameState.X_WIN, "win in 6-19 diagonal, start at 4;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "X", "EMPTY", "EMPTY", "EMPTY",
+                        "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "O", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "O", "EMPTY", "EMPTY"), GameState.X_WIN, "win in 6-19 diagonal, start at 3;"},
+                {Arrays.asList(
+                        "EMPTY", "O", "EMPTY", "EMPTY", "EMPTY",
+                        "O", "EMPTY", "EMPTY", "EMPTY", "X",
+                        "EMPTY", "EMPTY", "EMPTY", "X", "O",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in 6-19 diagonal, start at 10;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "X", "EMPTY",
+                        "EMPTY", "O", "X", "EMPTY", "EMPTY",
+                        "O", "X", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in 6-19 diagonal, start at 9;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "O",
+                        "O", "X", "EMPTY", "EMPTY", "EMPTY",
+                        "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in 6-19 diagonal, start at 8;"},
+                {Arrays.asList(
+                        "EMPTY", "O", "EMPTY", "EMPTY", "EMPTY",
+                        "O", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "O", "EMPTY", "EMPTY", "EMPTY", "X",
+                        "EMPTY", "EMPTY", "EMPTY", "X", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY"), GameState.X_WIN, "win in 6-19 diagonal, start at 15;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "X", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "O", "X", "O", "O", "EMPTY"), GameState.X_WIN, "win in 6-19 diagonal, start at 14;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "O", "O", "EMPTY", "O",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "X", "EMPTY", "EMPTY", "EMPTY",
+                        "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in 6-19 diagonal, start at 13;"},
+                // endregion
+
+                //region no win
+                {Arrays.asList(
+                        "O", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "X", "EMPTY"), GameState.NO_WIN, "not enough fields;"},
+                {Arrays.asList(
+                        "X", "O", "X", "X", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.NO_WIN, "row split by different sign;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "O", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY"), GameState.NO_WIN, "column split by different sign;"},
+                {Arrays.asList(
+                        "X", "O", "X", "X", "EMPTY",
+                        "EMPTY", "O", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.NO_WIN, "diagonal split by different sign;"},
+                {Arrays.asList(
+                        "O", "O", "EMPTY", "X", "X",
+                        "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.NO_WIN, "row split by board end;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "X", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "O", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY"), GameState.NO_WIN, "column split by board end;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "X", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "X",
+                        "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "O", "EMPTY", "EMPTY",
+                        "EMPTY", "O", "EMPTY", "EMPTY", "EMPTY"), GameState.NO_WIN, "diagonal split by board end;"},
                 // endregion
         };
     }
