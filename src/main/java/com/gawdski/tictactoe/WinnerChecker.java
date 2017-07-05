@@ -11,9 +11,9 @@ class WinnerChecker {
     private final int firstElementOnBoardId = 1;
     private Symbol winningSymbol;
 
-    WinnerChecker(int size, int needToWin) {
-        this.boardHeight = size;
-        this.boardWidth = size;
+    WinnerChecker(int width, int height, int needToWin) {
+        this.boardWidth = width;
+        this.boardHeight = height;
         this.needToWin = needToWin;
     }
 
@@ -23,7 +23,7 @@ class WinnerChecker {
 
     private boolean gameWon(Board board) {
 
-        if (board.takenTiles() > needToWin) {
+        if (board.takenTiles() >= needToWin) {
             for (int firstFieldInRowId = firstElementOnBoardId; firstFieldInRowId < boardWidth * boardHeight;
                  firstFieldInRowId += boardWidth) {
                 if (winInRow(board, firstFieldInRowId)) return true;

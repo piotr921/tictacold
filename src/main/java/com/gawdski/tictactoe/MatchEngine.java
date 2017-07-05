@@ -24,7 +24,7 @@ class MatchEngine {
 
         int gameId = 0;
         while (gameId < noOfGames) {
-            Board board = new Board(boardSize);
+            Board board = new Board(boardSize, boardSize);
             gameEngine = new GameEngine(board, players);
             int moveId = 0;
             board.printBoard();

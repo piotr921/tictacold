@@ -14,7 +14,7 @@ public class BoardTest {
     public void fieldAvailabilityTest(int boardSize, List<Integer> occupiedFields, int fieldId, boolean expected){
 
         // Given
-        Board board = new Board(boardSize);
+        Board board = new Board(boardSize, boardSize);
         occupiedFields.forEach(integer -> board.move(integer, Symbol.X));
 
         // When

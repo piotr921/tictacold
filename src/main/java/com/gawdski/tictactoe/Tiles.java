@@ -7,9 +7,9 @@ import java.util.stream.IntStream;
 class Tiles {
     private Map<Integer, Symbol> symbols;
 
-    Tiles(int boardSize) {
+    Tiles(int noOfFields) {
         symbols = new HashMap<>();
-        IntStream.range(1,boardSize*boardSize+1).forEach(
+        IntStream.range(1,noOfFields+1).forEach(
                 integer -> symbols.put(integer, Symbol.EMPTY));
     }
 

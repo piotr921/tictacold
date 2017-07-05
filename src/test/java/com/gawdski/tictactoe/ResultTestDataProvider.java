@@ -145,6 +145,7 @@ public class ResultTestDataProvider {
 
     @DataProvider(name = "needToWinProvider")
     public static Object[][] needToWinProvider() {
+
         return new Object[][]{
 
                 // region win in row
@@ -428,6 +429,77 @@ public class ResultTestDataProvider {
                         "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
                         "EMPTY", "EMPTY", "O", "EMPTY", "EMPTY",
                         "EMPTY", "O", "EMPTY", "EMPTY", "EMPTY"), GameState.NO_WIN, "diagonal split by board end;"},
+                // endregion
+        };
+    }
+
+    @DataProvider(name = "rectangularBoardProvider")
+    public static Object[][] rectangularBoardProvider() {
+
+        return new Object[][]{
+
+                // region win in row
+                {Arrays.asList(
+                        "EMPTY", "O", "O", "O", "EMPTY",
+                        "X", "EMPTY", "X", "X", "EMPTY",
+                        "EMPTY", "X", "EMPTY", "O", "O"), 5, 3, 3, GameState.O_WIN, "5x3x3 - win in first row;"},
+                {Arrays.asList(
+                        "X", "EMPTY", "X", "X", "EMPTY", "X",
+                        "EMPTY", "O", "EMPTY", "O", "O", "O",
+                        "X", "EMPTY", "X", "X", "EMPTY", "X",
+                        "EMPTY", "X", "EMPTY", "O", "O", "X"), 6, 4, 3, GameState.O_WIN, "6x4x3 - win in second row;"},
+                {Arrays.asList(
+                        "X", "X", "X", "EMPTY",
+                        "EMPTY", "X", "X", "EMPTY",
+                        "O", "O", "O", "O"), 4, 3, 4, GameState.O_WIN, "4x3x4 - win in third row;"},
+                // endregion
+
+                // region win in column
+                {Arrays.asList(
+                        "X", "O", "EMPTY", "O", "EMPTY",
+                        "X", "EMPTY", "X", "X", "EMPTY",
+                        "X", "X", "EMPTY", "O", "O"), 5, 3, 3, GameState.X_WIN, "5x3x3 - win in first column;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY", "EMPTY",
+                        "EMPTY", "X", "EMPTY", "EMPTY", "O", "EMPTY",
+                        "EMPTY", "X", "EMPTY", "EMPTY", "EMPTY", "X",
+                        "EMPTY", "X", "O", "O", "X", "EMPTY"), 6, 4, 3, GameState.X_WIN, "6x4x3 - win in second column;"},
+                {Arrays.asList(
+                        "X", "X", "X",
+                        "O", "X", "O",
+                        "O", "X", "O",
+                        "O", "X", "O"), 3, 4, 4, GameState.X_WIN, "4x3x4 - win in second column;"},
+                // endregion
+
+                // region win in diagonal
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "O", "X", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "O", "X", "O", "EMPTY", "EMPTY"), 5, 3, 3, GameState.X_WIN, "5x3x3 - win in left diagonal, start at 4;"},
+                {Arrays.asList(
+                        "O", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "X", "O", "EMPTY",
+                        "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY", "O",
+                        "EMPTY", "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), 6, 4, 3, GameState.X_WIN, "6x4x3 - win in left diagonal, start at 10;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "X", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "X", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "X"), 6, 4, 3, GameState.X_WIN, "6x4x3 - win in right diagonal, start at 10;"},
+                // endregion
+
+                // region no win
+                {Arrays.asList(
+                        "X", "X", "X",
+                        "O", "O", "O",
+                        "O", "O", "O",
+                        "X", "X", "X"), 3, 4, 4, GameState.NO_WIN, "4x3x4 - no win, all fields;"},
+                {Arrays.asList(
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+                        "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), 6, 4, 3, GameState.NO_WIN, "6x4x3 - not enough fields;"},
+
                 // endregion
         };
     }

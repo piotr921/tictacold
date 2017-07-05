@@ -10,10 +10,10 @@ class Board {
         return width;
     }
 
-    public Board(int boardSideLength) {
-        this.width = boardSideLength;
-        this.height = boardSideLength;
-        tiles = new Tiles(boardSideLength);
+    public Board(int boardWidth, int boardHeight) {
+        this.width = boardWidth;
+        this.height = boardHeight;
+        tiles = new Tiles(boardWidth * boardHeight);
     }
 
     boolean isFieldAvailable(int fieldId) {
