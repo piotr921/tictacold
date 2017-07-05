@@ -168,7 +168,7 @@ public class ResultTestDataProvider {
                         "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in second row;"},
                 {Arrays.asList(
                         "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
-                        "EMPTY", "EMPTY", "X", "EMPTY", "X",
+                        "EMPTY", "EMPTY", "X", "X", "X",
                         "X", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
                         "EMPTY", "EMPTY", "EMPTY", "O", "EMPTY",
                         "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"), GameState.X_WIN, "win in second row, in the end;"},

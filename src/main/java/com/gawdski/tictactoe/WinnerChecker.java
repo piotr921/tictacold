@@ -5,7 +5,6 @@ import java.util.List;
 
 class WinnerChecker {
 
-    // TODO: for now board size is equal to winning condition
     private final int boardWidth;
     private final int boardHeight;
     private final int needToWin;
@@ -34,8 +33,6 @@ class WinnerChecker {
                 if (winInColumn(board, firstFieldInColumnId)) return true;
             }
 
-            //return winInDiagonal(board, firstElementOnBoardId) || winInDiagonal(board, boardWidth);
-            //return winInRightDiagonal(board, firstElementOnBoardId) || winInLeftDiagonal(board, boardWidth);
             for (int firstFieldInRowWithDiagonalsId = firstElementOnBoardId; firstFieldInRowWithDiagonalsId < (boardHeight - (needToWin - 1)) * boardWidth + 1;
                  firstFieldInRowWithDiagonalsId += boardWidth) {
                 if (winInRightDiagonal(board, firstFieldInRowWithDiagonalsId)) return true;
@@ -98,16 +95,21 @@ class WinnerChecker {
     // diagonal going to right side of board
     private boolean winInRightDiagonal(Board board, int firstElementInDiagonalId) {
         int fieldId = firstElementInDiagonalId;
+        int lastIdInRowToCheck = firstElementInDiagonalId + boardWidth - needToWin;
         boolean win = false;
-        while (fieldId <= firstElementInDiagonalId + boardWidth - needToWin) {
+        while (fieldId <= lastIdInRowToCheck) {
             if (board.getTile(fieldId) != Symbol.EMPTY) {
                 winningSymbol = board.getTile(fieldId);
                 List<Symbol> diagonalSymbols = new ArrayList<>();
                 for (int i = 0; i < needToWin; i++) {
-                    diagonalSymbols.add(board.getTile(firstElementInDiagonalId + i * calculateDistanceBetweenFieldsOnDiagonal(firstElementOnBoardId)));
+                    diagonalSymbols.add(board.getTile(fieldId + i * calculateDistanceBetweenFieldsOnDiagonal(firstElementOnBoardId)));
                 }
                 win = diagonalSymbols.stream().allMatch(diagonalSymbols.get(0)::equals);
-                break;
+                if (win) {
+                    break;
+                } else {
+                    fieldId++;
+                }
             } else {
                 fieldId++;
             }
@@ -124,127 +126,19 @@ class WinnerChecker {
                 winningSymbol = board.getTile(fieldId);
                 List<Symbol> diagonalSymbols = new ArrayList<>();
                 for (int i = 0; i < needToWin; i++) {
-                    diagonalSymbols.add(board.getTile(firstElementInDiagonalId + i * calculateDistanceBetweenFieldsOnDiagonal(boardWidth)));
+                    diagonalSymbols.add(board.getTile(fieldId + i * calculateDistanceBetweenFieldsOnDiagonal(boardWidth)));
                 }
                 win = diagonalSymbols.stream().allMatch(diagonalSymbols.get(0)::equals);
-                break;
+                if (win) {
+                    break;
+                } else {
+                    fieldId--;
+                }
             } else {
                 fieldId--;
             }
         }
         return win;
-    }
-
-/*    int symbolsInDiagonal = 0;
-                while((board.getTile(fieldId) == winningSymbol) && (fieldId <  firstElementInDiagonalId + (needToWin - 1) * (boardWidth - 1))){
-        symbolsInDiagonal++;
-        fieldId += calculateDistanceBetweenFieldsOnDiagonal(boardWidth);
-    }
-                if (symbolsInDiagonal >= needToWin) {
-        win = true;
-        break;
-    }*/
-
-    /*    int symbolsInDiagonal = 0;
-                while((board.getTile(fieldId) == winningSymbol) && (fieldId )){
-        symbolsInDiagonal++;
-        fieldId += calculateDistanceBetweenFieldsOnDiagonal(firstElementOnBoardId);
-    }
-                if (symbolsInDiagonal >= needToWin) {
-        win = true;
-        break;
-    }*/
-
-/*    // diagonal going to right side of board
-    private boolean winInRightDiagonal(Board board, int firstElementInDiagonalId) {
-        int fieldId = firstElementInDiagonalId;
-        boolean foundWin = false;
-        while (firstElementInDiagonalId < firstElementInDiagonalId + boardWidth - needToWin) {
-            if (wonInDiagonalFromRow(board, firstElementInDiagonalId)) {
-                foundWin = true;
-                break;
-            } else {
-                firstElementInDiagonalId++;
-            }
-        }
-        return foundWin;
-    }*/
-
-    private boolean wonInDiagonalFromRow(Board board, int firstElementInDiagonal) {
-        int elementInDiagonalId = firstElementInDiagonal;
-        boolean win = false;
-        while (elementInDiagonalId < (firstElementInDiagonal / boardWidth) * boardWidth + (needToWin - 1)) {
-            if (board.getTile(elementInDiagonalId) != Symbol.EMPTY) {
-                int count = 0;
-                winningSymbol = board.getTile(elementInDiagonalId);
-                while (board.getTile(elementInDiagonalId) == winningSymbol) {
-                    count++;
-                    elementInDiagonalId += calculateDistanceBetweenFieldsOnDiagonal(firstElementOnBoardId);
-                }
-                if (count >= needToWin) {
-                    win = true;
-                    break;
-                }
-            } else {
-                elementInDiagonalId++;
-            }
-        }
-        return win;
-    }
-
-/*    // diagonal going to left side of board
-    private boolean winInLeftDiagonal(Board board, int firstElementInColumn) {
-
-        boolean foundWin = false;
-        while (firstElementInColumn < boardWidth * boardHeight) {
-            if (wonInDiagonalReverse(board, firstElementInColumn)) {
-                foundWin = true;
-                break;
-            } else {
-                firstElementInColumn += boardWidth;
-            }
-        }
-        return foundWin;
-    }
-
-    private boolean wonInDiagonalReverse(Board board, int lastElementInRow) {
-        int elementInDiagonalId = lastElementInRow;
-        boolean win = false;
-        while (elementInDiagonalId > (lastElementInRow - (needToWin + 1))) {
-            if (board.getTile(elementInDiagonalId) != Symbol.EMPTY) {
-                int count = 0;
-                winningSymbol = board.getTile(elementInDiagonalId);
-                while (board.getTile(elementInDiagonalId) == winningSymbol) {
-                    count++;
-                    elementInDiagonalId += calculateDistanceBetweenFieldsOnDiagonal(boardWidth);
-                }
-                if (count >= needToWin) {
-                    win = true;
-                    break;
-                }
-            } else {
-                elementInDiagonalId--;
-            }
-        }
-        return win;
-    }*/
-
-    private boolean winInDiagonal(Board board, int startingField) {
-
-        winningSymbol = board.getTile(startingField);
-        if (!winningSymbol.equals(Symbol.EMPTY)) {
-            int counts = 0;
-            for (int elementOnDiagonal = 0; elementOnDiagonal < boardWidth; elementOnDiagonal++) {
-                int currentElementId = getCalculateCurrentElementId(elementOnDiagonal, startingField);
-                if (board.areFieldsEqual(currentElementId, winningSymbol)) {
-                    counts++;
-                }
-                if (counts == needToWin) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     private int getCalculateCurrentElementId(int elementOnDiagonal, int startingPoint) {
@@ -262,17 +156,3 @@ class WinnerChecker {
         }
     }
 }
-
-/*        winningSymbol = board.getTile(firstFieldInColumnId);
-        if (!winningSymbol.equals(Symbol.EMPTY)) {
-            int counts = 1;
-            for (int fieldInColumn = firstFieldInColumnId + boardWidth; fieldInColumn <= boardWidth * boardHeight;
-                 fieldInColumn += boardWidth) {
-                if (board.areFieldsEqual(fieldInColumn, winningSymbol)) {
-                    counts++;
-                }
-            }
-            if (counts == needToWin) return true;
-        }
-        return false;
-        } */
