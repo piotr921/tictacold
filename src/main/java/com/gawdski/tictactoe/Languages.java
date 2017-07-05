@@ -19,7 +19,7 @@ enum Languages {
         return type;
     }
 
-    static Communicable getLangType(InputReader<Integer> reader) {
+    static Communicable getLangType(InputReader<Integer> reader) throws QuitGameException {
 
         int langType = 0;
         boolean typedCorrectValue = false;

@@ -13,7 +13,7 @@ class GameEngine {
         this.needToWin = needToWin;
     }
 
-    void makeMove(Board board, int moveId, Communicable messanger) {
+    void makeMove(Board board, int moveId, Communicable messanger) throws QuitGameException {
 
         Integer selectedField = null;
         Player player = players.getPlayerForMove(moveId);

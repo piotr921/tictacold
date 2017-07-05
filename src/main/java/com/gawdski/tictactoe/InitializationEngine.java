@@ -2,7 +2,7 @@ package com.gawdski.tictactoe;
 
 class InitializationEngine {
 
-    static Communicable selectLangClass(){
+    static Communicable selectLangClass() throws QuitGameException {
 
         InputReader<Integer> integerInputReader = new IntegerReader();
         System.out.println("Please select language / Proszę wybrać język");

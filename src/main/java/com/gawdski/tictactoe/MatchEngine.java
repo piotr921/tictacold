@@ -11,9 +11,11 @@ class MatchEngine {
     private int needToWin;
     private Players players;
 
-    void initializeMatch() {
+    void initializeMatch() throws QuitGameException {
 
         messanger = InitializationEngine.selectLangClass();
+        messanger.greetings();
+
         boardWidth = messanger.askForBoardWidth(3, 1000);
         boardHeight = messanger.askForBoardHeight(3, 1000);
         needToWin = messanger.askWinningCondition();
@@ -22,9 +24,10 @@ class MatchEngine {
                 messanger.askForStartingSymbol(),
                 messanger.askPlayer1ForName(),
                 messanger.askPlayer2ForName());
+
     }
 
-    void playMatch() {
+    void playMatch() throws QuitGameException {
 
         int gameId = 0;
         while (gameId < noOfGames) {
@@ -41,5 +44,6 @@ class MatchEngine {
             gameEngine.displayCurrentResult(messanger);
             gameId++;
         }
+
     }
 }

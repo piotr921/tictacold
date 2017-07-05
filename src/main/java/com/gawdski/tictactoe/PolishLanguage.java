@@ -7,25 +7,30 @@ class PolishLanguage implements Communicable {
     private InputReader<Symbol> symbolInputReader = new SymbolReader();
 
     @Override
-    public String askPlayer1ForName() {
+    public void greetings() {
+        System.out.println("Witaj w grze kółko i krzyżyk. Aby wyjść z gry wciśnij 'q' jako odpowiedź na dowolne pytanie.");
+    }
+
+    @Override
+    public String askPlayer1ForName() throws QuitGameException {
         System.out.println("Proszę wprowadzić imię rozpoczynającego gracza: ");
         return stringInputReader.read();
     }
 
     @Override
-    public String askPlayer2ForName() {
+    public String askPlayer2ForName() throws QuitGameException {
         System.out.println("Proszę wprowadzić imię drugiego gracza: ");
         return stringInputReader.read();
     }
 
     @Override
-    public Symbol askForStartingSymbol() {
+    public Symbol askForStartingSymbol() throws QuitGameException {
         System.out.println("Proszę wybrać, który znak rozpoczyna: ");
         return symbolInputReader.read();
     }
 
     @Override
-    public Integer askForBoardHeight(int minSize, int maxSize) {
+    public Integer askForBoardHeight(int minSize, int maxSize) throws QuitGameException {
         System.out.println(String.format("Proszę wprowadzić wysokość planszy (dozwolne są liczby z zakresu %d-%d): ", minSize, maxSize));
         Integer boardSize = 0;
         while (boardSize < minSize || boardSize > maxSize) {
@@ -38,7 +43,7 @@ class PolishLanguage implements Communicable {
     }
 
     @Override
-    public Integer askForBoardWidth(int minSize, int maxSize) {
+    public Integer askForBoardWidth(int minSize, int maxSize) throws QuitGameException {
         System.out.println(String.format("Proszę wprowadzić szerokość planszy (dozwolne są liczby z zakresu %d-%d): ", minSize, maxSize));
         Integer boardSize = 0;
         while (boardSize < minSize || boardSize > maxSize) {
@@ -51,13 +56,13 @@ class PolishLanguage implements Communicable {
     }
 
     @Override
-    public Integer askPlayerForFieldId(Player player) {
-        System.out.println(String.format("%s, proszę wybierz pole", player.getName()));
+    public Integer askPlayerForFieldId(Player player) throws QuitGameException {
+        System.out.println(String.format("%s, proszę wybierz pole (lub wciśnij 'q' by wyłączyć grę)", player.getName()));
         return integerInputReader.read();
     }
 
     @Override
-    public Integer askWinningCondition() {
+    public Integer askWinningCondition() throws QuitGameException {
         System.out.println("Proszę wprowadzić ilość znaków pod rząd, która zapewnie wygraną: ");
         return integerInputReader.read();
     }

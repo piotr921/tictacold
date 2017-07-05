@@ -6,19 +6,21 @@ package com.gawdski.tictactoe;
  */
 interface Communicable {
 
-    String askPlayer1ForName();
+    void greetings();
 
-    String askPlayer2ForName();
+    String askPlayer1ForName() throws QuitGameException;
 
-    Symbol askForStartingSymbol();
+    String askPlayer2ForName() throws QuitGameException;
 
-    Integer askForBoardWidth(int minSize, int maxSize);
+    Symbol askForStartingSymbol() throws QuitGameException;
 
-    Integer askForBoardHeight(int minSize, int maxSize);
+    Integer askForBoardWidth(int minSize, int maxSize) throws QuitGameException;
 
-    Integer askPlayerForFieldId(Player player);
+    Integer askForBoardHeight(int minSize, int maxSize) throws QuitGameException;
 
-    Integer askWinningCondition();
+    Integer askPlayerForFieldId(Player player) throws QuitGameException;
+
+    Integer askWinningCondition() throws QuitGameException;
 
     void informAboutUnavailableField();
 
