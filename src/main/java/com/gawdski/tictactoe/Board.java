@@ -5,6 +5,12 @@ class Board {
     private int width;
     private int height;
 
+    public Board(int boardWidth, int boardHeight) {
+        this.width = boardWidth;
+        this.height = boardHeight;
+        tiles = new Tiles(boardWidth * boardHeight);
+    }
+
     int getWidth() {
         return width;
     }
@@ -13,22 +19,8 @@ class Board {
         return height;
     }
 
-    public Board(int boardWidth, int boardHeight) {
-        this.width = boardWidth;
-        this.height = boardHeight;
-        tiles = new Tiles(boardWidth * boardHeight);
-    }
-
-    boolean isFieldAvailable(int fieldId) {
-        return isFieldOnBoard(fieldId) && isFieldEmpty(fieldId);
-    }
-
-    private boolean isFieldOnBoard(int fieldId) {
-        return fieldId > 0 && fieldId <= width * height;
-    }
-
-    private boolean isFieldEmpty(int fieldId) {
-        return tiles.getTile(fieldId) == Symbol.EMPTY;
+    Symbol getTile(int tile) {
+        return tiles.getTile(tile);
     }
 
     boolean isWholeBoardOccupied() {
@@ -47,10 +39,6 @@ class Board {
         tiles.add(tile, playerSymbol);
     }
 
-    Symbol getTile(int tile) {
-        return tiles.getTile(tile);
-    }
-
     void printBoard() {
         tiles.getBoardLayout().forEach((k, v) -> {
             System.out.printf("|%s", Symbol.getString(v));
@@ -59,5 +47,17 @@ class Board {
                 System.out.println();
             }
         });
+    }
+
+    boolean isFieldAvailable(int fieldId) {
+        return isFieldOnBoard(fieldId) && isFieldEmpty(fieldId);
+    }
+
+    private boolean isFieldOnBoard(int fieldId) {
+        return fieldId > 0 && fieldId <= width * height;
+    }
+
+    private boolean isFieldEmpty(int fieldId) {
+        return tiles.getTile(fieldId) == Symbol.EMPTY;
     }
 }

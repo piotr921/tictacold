@@ -51,10 +51,10 @@ class WinnerChecker {
         int endOfRowId = firstFieldInRowId + boardWidth;
         boolean win = false;
         while (fieldId < endOfRowId) {
-            if (board.getTile(fieldId) != Symbol.EMPTY) {
+            if (!board.areFieldsEqual(fieldId, Symbol.EMPTY)) {
                 winningSymbol = board.getTile(fieldId);
                 int symbolsInRow = 0;
-                while ((board.getTile(fieldId) == winningSymbol) && (fieldId < endOfRowId)) {
+                while ((board.areFieldsEqual(fieldId, winningSymbol)) && (fieldId < endOfRowId)) {
                     fieldId++;
                     symbolsInRow++;
                 }
@@ -74,10 +74,10 @@ class WinnerChecker {
         int endOfColumnId = firstFieldInColumnId + (boardHeight - 1) * boardWidth;
         boolean win = false;
         while (fieldId <= endOfColumnId) {
-            if (board.getTile(fieldId) != Symbol.EMPTY) {
+            if (!board.areFieldsEqual(fieldId, Symbol.EMPTY)) {
                 winningSymbol = board.getTile(fieldId);
                 int symbolsInRow = 0;
-                while ((board.getTile(fieldId) == winningSymbol) && (fieldId <= endOfColumnId)) {
+                while ((board.areFieldsEqual(fieldId, winningSymbol)) && (fieldId <= endOfColumnId)) {
                     fieldId += boardWidth;
                     symbolsInRow++;
                 }
@@ -98,7 +98,7 @@ class WinnerChecker {
         int lastIdInRowToCheck = firstElementInDiagonalId + boardWidth - needToWin;
         boolean win = false;
         while (fieldId <= lastIdInRowToCheck) {
-            if (board.getTile(fieldId) != Symbol.EMPTY) {
+            if (!board.areFieldsEqual(fieldId, Symbol.EMPTY)) {
                 winningSymbol = board.getTile(fieldId);
                 List<Symbol> diagonalSymbols = new ArrayList<>();
                 for (int i = 0; i < needToWin; i++) {
@@ -122,7 +122,7 @@ class WinnerChecker {
         int fieldId = firstElementInDiagonalId;
         boolean win = false;
         while (fieldId > firstElementInDiagonalId - (boardWidth - (needToWin - 1))) {
-            if (board.getTile(fieldId) != Symbol.EMPTY) {
+            if (!board.areFieldsEqual(fieldId, Symbol.EMPTY)) {
                 winningSymbol = board.getTile(fieldId);
                 List<Symbol> diagonalSymbols = new ArrayList<>();
                 for (int i = 0; i < needToWin; i++) {
@@ -139,10 +139,6 @@ class WinnerChecker {
             }
         }
         return win;
-    }
-
-    private int getCalculateCurrentElementId(int elementOnDiagonal, int startingPoint) {
-        return startingPoint + elementOnDiagonal * calculateDistanceBetweenFieldsOnDiagonal(startingPoint);
     }
 
     private int calculateDistanceBetweenFieldsOnDiagonal(int startingPoint) {

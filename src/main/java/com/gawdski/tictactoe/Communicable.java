@@ -1,5 +1,9 @@
 package com.gawdski.tictactoe;
 
+import com.gawdski.tictactoe.Player;
+import com.gawdski.tictactoe.QuitGameException;
+import com.gawdski.tictactoe.Symbol;
+
 /*
  * Interface with methods for displaying messages to user, and returns typed answers
  * Classes for specified languages should implement this interface
