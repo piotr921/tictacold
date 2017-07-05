@@ -25,8 +25,21 @@ class EnglishLanguage implements Communicable {
     }
 
     @Override
-    public Integer askForBoardSize(int minSize, int maxSize) {
-        System.out.println(String.format("Please select board size (allowed numbers %d-%d): ", minSize, maxSize));
+    public Integer askForBoardWidth(int minSize, int maxSize) {
+        System.out.println(String.format("Please select board width (allowed numbers %d-%d): ", minSize, maxSize));
+        Integer boardSize = 0;
+        while (boardSize < minSize || boardSize > maxSize) {
+            boardSize = integerInputReader.read();
+            if (boardSize < minSize || boardSize > maxSize) {
+                System.out.println("You put value ot of range. Please select another one.");
+            }
+        }
+        return boardSize;
+    }
+
+    @Override
+    public Integer askForBoardHeight(int minSize, int maxSize) {
+        System.out.println(String.format("Please select board height (allowed numbers %d-%d): ", minSize, maxSize));
         Integer boardSize = 0;
         while (boardSize < minSize || boardSize > maxSize) {
             boardSize = integerInputReader.read();
@@ -45,7 +58,7 @@ class EnglishLanguage implements Communicable {
 
     @Override
     public Integer askWinningCondition() {
-        System.out.println("Please communicable how many symbols in line provide win: ");
+        System.out.println("Please select how many symbols in line provide win: ");
         return integerInputReader.read();
     }
 

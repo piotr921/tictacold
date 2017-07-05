@@ -5,10 +5,12 @@ class GameEngine {
     private Players players;
     private Board board;
     private GameState gameState;
+    private final int needToWin;
 
-    GameEngine(Board board, Players players) {
+    GameEngine(Board board, Players players, int needToWin) {
         this.board = board;
         this.players = players;
+        this.needToWin = needToWin;
     }
 
     void makeMove(Board board, int moveId, Communicable messanger) {
@@ -29,7 +31,7 @@ class GameEngine {
 
     boolean isGameFinished() {
         boolean finished;
-        WinnerChecker winnerChecker = new WinnerChecker(board.getBoardSideLength(), board.getBoardSideLength(), board.getBoardSideLength());
+        WinnerChecker winnerChecker = new WinnerChecker(board.getWidth(), board.getHeight(), needToWin);
         gameState = winnerChecker.checkGameState(board);
         finished = gameState == GameState.X_WIN || gameState == GameState.O_WIN || board.isWholeBoardOccupied();
         return finished;

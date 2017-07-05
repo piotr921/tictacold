@@ -12,7 +12,9 @@ interface Communicable {
 
     Symbol askForStartingSymbol();
 
-    Integer askForBoardSize(int minSize, int maxSize);
+    Integer askForBoardWidth(int minSize, int maxSize);
+
+    Integer askForBoardHeight(int minSize, int maxSize);
 
     Integer askPlayerForFieldId(Player player);
 

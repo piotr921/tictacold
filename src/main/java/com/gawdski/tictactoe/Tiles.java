@@ -9,8 +9,7 @@ class Tiles {
 
     Tiles(int noOfFields) {
         symbols = new HashMap<>();
-        IntStream.range(1,noOfFields+1).forEach(
-                integer -> symbols.put(integer, Symbol.EMPTY));
+        IntStream.range(1,noOfFields+1).forEach(integer -> symbols.put(integer, Symbol.EMPTY));
     }
 
     void add(int tile, Symbol symbol) {
@@ -18,7 +17,6 @@ class Tiles {
     }
 
     Symbol getTile(int tile) {
-        //TODO: should throw an exception if the tile is invalid
         return symbols.get(tile);
     }
 

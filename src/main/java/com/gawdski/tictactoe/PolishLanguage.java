@@ -25,8 +25,21 @@ class PolishLanguage implements Communicable {
     }
 
     @Override
-    public Integer askForBoardSize(int minSize, int maxSize) {
-        System.out.println(String.format("Proszę wprowadzić rozmiar planszy (dozwolne są liczby z zakresu %d-%d): ", minSize, maxSize));
+    public Integer askForBoardHeight(int minSize, int maxSize) {
+        System.out.println(String.format("Proszę wprowadzić wysokość planszy (dozwolne są liczby z zakresu %d-%d): ", minSize, maxSize));
+        Integer boardSize = 0;
+        while (boardSize < minSize || boardSize > maxSize) {
+            boardSize = integerInputReader.read();
+            if (boardSize < minSize || boardSize > maxSize) {
+                System.out.println("Wartość spoza zakresu, wprowadź inną liczbę.");
+            }
+        }
+        return boardSize;
+    }
+
+    @Override
+    public Integer askForBoardWidth(int minSize, int maxSize) {
+        System.out.println(String.format("Proszę wprowadzić szerokość planszy (dozwolne są liczby z zakresu %d-%d): ", minSize, maxSize));
         Integer boardSize = 0;
         while (boardSize < minSize || boardSize > maxSize) {
             boardSize = integerInputReader.read();

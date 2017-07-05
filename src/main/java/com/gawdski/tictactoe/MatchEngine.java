@@ -6,13 +6,17 @@ class MatchEngine {
 
     private Communicable messanger;
     private GameEngine gameEngine;
-    private int boardSize;
+    private int boardWidth;
+    private int boardHeight;
+    private int needToWin;
     private Players players;
 
     void initializeMatch() {
 
         messanger = InitializationEngine.selectLangClass();
-        boardSize = messanger.askForBoardSize(2, 1000);
+        boardWidth = messanger.askForBoardWidth(3, 1000);
+        boardHeight = messanger.askForBoardHeight(3, 1000);
+        needToWin = messanger.askWinningCondition();
         players = new Players();
         players.initializePlayers(
                 messanger.askForStartingSymbol(),
@@ -24,8 +28,8 @@ class MatchEngine {
 
         int gameId = 0;
         while (gameId < noOfGames) {
-            Board board = new Board(boardSize, boardSize);
-            gameEngine = new GameEngine(board, players);
+            Board board = new Board(boardWidth, boardHeight);
+            gameEngine = new GameEngine(board, players, needToWin);
             int moveId = 0;
             board.printBoard();
 

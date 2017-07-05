@@ -5,9 +5,12 @@ class Board {
     private int width;
     private int height;
 
-    // todo works with square
-    int getBoardSideLength() {
+    int getWidth() {
         return width;
+    }
+
+    int getHeight() {
+        return height;
     }
 
     public Board(int boardWidth, int boardHeight) {
