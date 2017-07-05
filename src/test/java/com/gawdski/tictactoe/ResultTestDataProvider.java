@@ -276,7 +276,7 @@ public class ResultTestDataProvider {
                 // region win in diagonal
                 {Arrays.asList(
                         "X", "EMPTY", "X", "X", "O",
-                        "O", "X", "EMPTY", "EMPTY", "O",
+                        "O", "X", "EMPTY", "EMPTY", "X",
                         "X", "O", "X", "EMPTY", "O",
                         "O", "O", "EMPTY", "EMPTY", "X",
                         "X", "EMPTY", "O", "EMPTY", "X"), GameState.X_WIN, "win in 1-25 diagonal, start at 1;"},
