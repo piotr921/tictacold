@@ -1,4 +1,6 @@
-package com.gawdski.tictactoe;
+package com.gawdski.tictactoe.communication;
+
+import com.gawdski.tictactoe.QuitGameException;
 
 enum Languages {
     ENG(new EnglishLanguage(), 1), POL(new PolishLanguage(), 2);

@@ -1,5 +1,7 @@
 package com.gawdski.tictactoe;
 
+import com.gawdski.tictactoe.communication.Communicable;
+
 class GameEngine {
 
     private Players players;
@@ -18,7 +20,7 @@ class GameEngine {
         Integer selectedField = null;
         Player player = players.getPlayerForMove(moveId);
         while (selectedField == null) {
-            Integer tmp = messanger.askPlayerForFieldId(player);
+            Integer tmp = messanger.askPlayerForFieldId(player.getName());
             if (board.isFieldAvailable(tmp)) {
                 selectedField = tmp;
             } else {

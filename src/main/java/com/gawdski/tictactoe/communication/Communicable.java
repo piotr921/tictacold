@@ -1,10 +1,14 @@
-package com.gawdski.tictactoe;
+package com.gawdski.tictactoe.communication;
+
+
+import com.gawdski.tictactoe.QuitGameException;
+import com.gawdski.tictactoe.Symbol;
 
 /*
  * Interface with methods for displaying messages to user, and returns typed answers
  * Classes for specified languages should implement this interface
  */
-interface Communicable {
+public interface Communicable {
 
     static Communicable askForLanguage() throws QuitGameException {
         System.out.println("Please select language / Proszę wybrać język");
@@ -24,7 +28,7 @@ interface Communicable {
 
     Integer askForBoardHeight(int minSize, int maxSize) throws QuitGameException;
 
-    Integer askPlayerForFieldId(Player player) throws QuitGameException;
+    Integer askPlayerForFieldId(String playerName) throws QuitGameException;
 
     Integer askWinningCondition() throws QuitGameException;
 

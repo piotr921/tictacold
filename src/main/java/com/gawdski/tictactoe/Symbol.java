@@ -1,6 +1,6 @@
 package com.gawdski.tictactoe;
 
-enum Symbol {
+public enum Symbol {
     X, O, EMPTY;
 
     public static String getString(Symbol symbol) {

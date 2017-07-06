@@ -1,4 +1,6 @@
-package com.gawdski.tictactoe;
+package com.gawdski.tictactoe.communication;
+
+import com.gawdski.tictactoe.Symbol;
 
 class SymbolReader extends InputReader<Symbol> {
 

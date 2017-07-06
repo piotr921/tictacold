@@ -1,8 +1,8 @@
 package com.gawdski.tictactoe;
 
-class QuitGameException extends Exception {
+public class QuitGameException extends Exception {
 
-    QuitGameException(String message) {
+    public QuitGameException(String message) {
         super(message);
     }
 }

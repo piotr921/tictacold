@@ -1,4 +1,4 @@
-package com.gawdski.tictactoe;
+package com.gawdski.tictactoe.communication;
 
 class StringReader extends InputReader<String>{
 

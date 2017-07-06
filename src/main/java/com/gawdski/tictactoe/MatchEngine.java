@@ -1,5 +1,7 @@
 package com.gawdski.tictactoe;
 
+import com.gawdski.tictactoe.communication.Communicable;
+
 class MatchEngine {
 
     private final int noOfGames = 3;
