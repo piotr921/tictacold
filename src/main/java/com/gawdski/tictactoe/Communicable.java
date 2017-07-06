@@ -1,14 +1,16 @@
 package com.gawdski.tictactoe;
 
-import com.gawdski.tictactoe.Player;
-import com.gawdski.tictactoe.QuitGameException;
-import com.gawdski.tictactoe.Symbol;
-
 /*
  * Interface with methods for displaying messages to user, and returns typed answers
  * Classes for specified languages should implement this interface
  */
 interface Communicable {
+
+    static Communicable askForLanguage() throws QuitGameException {
+        System.out.println("Please select language / Proszę wybrać język");
+        System.out.println("1 - ENGLISH (ANGIELSKI); 2 - POLISH (POLSKI)");
+        return Languages.getLangType(new IntegerReader());
+    }
 
     void greetings();
 

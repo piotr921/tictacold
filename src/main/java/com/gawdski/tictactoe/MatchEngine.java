@@ -13,7 +13,7 @@ class MatchEngine {
 
     void initializeMatch() throws QuitGameException {
 
-        messanger = InitializationEngine.selectLangClass();
+        messanger = Communicable.askForLanguage();
         messanger.greetings();
 
         boardWidth = messanger.askForBoardWidth(3, 1000);
