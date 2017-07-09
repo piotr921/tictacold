@@ -27,7 +27,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>com.gawdski.tictactoe.App</mainClass>
+              <mainClass>com.gawdski.tictactoe.ApplicationServer</mainClass>
             </manifest>
           </archive>
         </configuration>
