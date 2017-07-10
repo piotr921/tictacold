@@ -4,6 +4,9 @@ package com.gawdski.tictactoe.communication;
 import com.gawdski.tictactoe.QuitGameException;
 import com.gawdski.tictactoe.Symbol;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+
 /*
  * Interface with methods for displaying messages to user, and returns typed answers
  * Classes for specified languages should implement this interface
@@ -17,6 +20,8 @@ public interface Communicable {
     }
 
     void greetings();
+
+    String askPlayerForName(BufferedReader reader, PrintWriter writer) throws QuitGameException;
 
     String askPlayer1ForName() throws QuitGameException;
 

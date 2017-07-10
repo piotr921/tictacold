@@ -4,6 +4,10 @@ package com.gawdski.tictactoe.communication;
 import com.gawdski.tictactoe.QuitGameException;
 import com.gawdski.tictactoe.Symbol;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 class EnglishLanguage implements Communicable {
 
     private InputReader<String> stringInputReader = new StringReader();
@@ -13,6 +17,22 @@ class EnglishLanguage implements Communicable {
     @Override
     public void greetings() {
         System.out.println("Welcome in Tic Tac Toe game. To exit press 'q' as answer for any question.");
+    }
+
+    @Override
+    public String askPlayerForName(BufferedReader reader, PrintWriter writer) throws QuitGameException {
+        writer.println("Please write your name: ");
+        writer.flush();
+
+        String name = null;
+        while (name == null) {
+            try {
+                name = reader.readLine();
+            } catch (IOException e) {
+                System.err.println("Error during reading user name");
+            }
+        }
+       return name;
     }
 
     @Override

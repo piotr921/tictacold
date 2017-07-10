@@ -4,6 +4,10 @@ package com.gawdski.tictactoe.communication;
 import com.gawdski.tictactoe.QuitGameException;
 import com.gawdski.tictactoe.Symbol;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 class PolishLanguage implements Communicable {
 
     private InputReader<String> stringInputReader = new StringReader();
@@ -13,6 +17,22 @@ class PolishLanguage implements Communicable {
     @Override
     public void greetings() {
         System.out.println("Witaj w grze kółko i krzyżyk. Aby wyjść z gry wciśnij 'q' jako odpowiedź na dowolne pytanie.");
+    }
+
+    @Override
+    public String askPlayerForName(BufferedReader reader, PrintWriter writer) throws QuitGameException {
+        writer.println("Proszę podaj swoje imię: ");
+        writer.flush();
+
+        String name = null;
+        while (name == null) {
+            try {
+                name = reader.readLine();
+            } catch (IOException e) {
+                System.err.println("Błąd podczas odczytywania imienia użytkownika");
+            }
+        }
+        return name;
     }
 
     @Override
