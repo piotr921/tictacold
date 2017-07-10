@@ -27,19 +27,31 @@ class MatchEngine {
     private PrintWriter player1Writer;
     private PrintWriter player2Writer;
 
-    MatchEngine() {
+    MatchEngine() throws QuitGameException {
 
         try {
             ServerSocket serverSocket = new ServerSocket(PORT);
 
             Socket player1Socket = serverSocket.accept();
-            Socket player2Socket = serverSocket.accept();
-            System.out.println("Players connected");
+            System.out.println("Player 1 connected");
 
             player1Reader = new BufferedReader(new InputStreamReader(player1Socket.getInputStream()));
-            player2Reader = new BufferedReader(new InputStreamReader(player2Socket.getInputStream()));
-
             player1Writer = new PrintWriter(player1Socket.getOutputStream());
+
+            player1Writer.println("You are first and need to init board");
+            player1Writer.flush();
+
+            messanger = Communicable.askForLanguage(player1Reader, player1Writer);
+            messanger.greetings(player1Writer);
+
+            boardWidth = messanger.askForBoardWidth(3, 1000, player1Reader, player1Writer);
+            boardHeight = messanger.askForBoardHeight(3, 1000, player1Reader, player1Writer);
+            needToWin = messanger.askWinningCondition(selectBiggerSize(boardWidth, boardHeight), player1Reader, player1Writer);
+
+            Socket player2Socket = serverSocket.accept();
+            System.out.println("Player 2 connected");
+
+            player2Reader = new BufferedReader(new InputStreamReader(player2Socket.getInputStream()));
             player2Writer = new PrintWriter(player2Socket.getOutputStream());
 
         } catch (IOException e) {
@@ -49,12 +61,12 @@ class MatchEngine {
 
     void initializeMatch() throws QuitGameException {
 
-        messanger = Communicable.askForLanguage();
-        messanger.greetings();
+        //messanger = Communicable.askForLanguage();
+        //messanger.greetings();
 
-        boardWidth = messanger.askForBoardWidth(3, 1000);
-        boardHeight = messanger.askForBoardHeight(3, 1000);
-        needToWin = messanger.askWinningCondition(selectBiggerSize(boardWidth, boardHeight));
+        //boardWidth = messanger.askForBoardWidth(3, 1000);
+        //boardHeight = messanger.askForBoardHeight(3, 1000);
+        //needToWin = messanger.askWinningCondition(selectBiggerSize(boardWidth, boardHeight));
         players = new Players();
         players.initializePlayers(
                 messanger.askForStartingSymbol(),

@@ -15,8 +15,8 @@ class PolishLanguage implements Communicable {
     private InputReader<Symbol> symbolInputReader = new SymbolReader();
 
     @Override
-    public void greetings() {
-        System.out.println("Witaj w grze kółko i krzyżyk. Aby wyjść z gry wciśnij 'q' jako odpowiedź na dowolne pytanie.");
+    public void greetings(PrintWriter writer) {
+        writer.println("Witaj w grze kółko i krzyżyk. Aby wyjść z gry wciśnij 'q' jako odpowiedź na dowolne pytanie.");
     }
 
     @Override
@@ -54,26 +54,38 @@ class PolishLanguage implements Communicable {
     }
 
     @Override
-    public Integer askForBoardHeight(int minSize, int maxSize) throws QuitGameException {
-        System.out.println(String.format("Proszę wprowadzić wysokość planszy (dozwolne są liczby z zakresu %d-%d): ", minSize, maxSize));
+    public Integer askForBoardHeight(int minSize, int maxSize, BufferedReader reader, PrintWriter writer) throws QuitGameException {
+        writer.println(String.format("Proszę wprowadzić wysokość planszy (dozwolne są liczby z zakresu %d-%d): ", minSize, maxSize));
+        writer.flush();
         Integer boardSize = 0;
         while (boardSize < minSize || boardSize > maxSize) {
-            boardSize = integerInputReader.read();
-            if (boardSize < minSize || boardSize > maxSize) {
-                System.out.println("Wartość spoza zakresu, wprowadź inną liczbę.");
+            try {
+                String readFromStream = reader.readLine();
+                boardSize = Integer.valueOf(readFromStream);
+                if (boardSize < minSize || boardSize > maxSize) {
+                    System.out.println("Wartość spoza zakresu, wprowadź inną liczbę.");
+                }
+            } catch (IOException e) {
+                System.err.println("Błąd podczas wprowadzania wysokości planszy");
             }
         }
         return boardSize;
     }
 
     @Override
-    public Integer askForBoardWidth(int minSize, int maxSize) throws QuitGameException {
-        System.out.println(String.format("Proszę wprowadzić szerokość planszy (dozwolne są liczby z zakresu %d-%d): ", minSize, maxSize));
+    public Integer askForBoardWidth(int minSize, int maxSize, BufferedReader reader, PrintWriter writer) throws QuitGameException {
+        writer.println(String.format("Proszę wprowadzić szerokość planszy (dozwolne są liczby z zakresu %d-%d): ", minSize, maxSize));
+        writer.flush();
         Integer boardSize = 0;
         while (boardSize < minSize || boardSize > maxSize) {
-            boardSize = integerInputReader.read();
-            if (boardSize < minSize || boardSize > maxSize) {
-                System.out.println("Wartość spoza zakresu, wprowadź inną liczbę.");
+            try {
+                String readFromStream = reader.readLine();
+                boardSize = Integer.valueOf(readFromStream);
+                if (boardSize < minSize || boardSize > maxSize) {
+                    System.out.println("Wartość spoza zakresu, wprowadź inną liczbę.");
+                }
+            } catch (IOException e) {
+                System.err.println("Błąd podczas wprowadzania szerkości planszy");
             }
         }
         return boardSize;
@@ -86,15 +98,21 @@ class PolishLanguage implements Communicable {
     }
 
     @Override
-    public Integer askWinningCondition(int biggerSize) throws QuitGameException {
-        System.out.println("Proszę wprowadzić ilość znaków pod rząd, która zapewnie wygraną: ");
+    public Integer askWinningCondition(int biggerSize, BufferedReader reader, PrintWriter writer) throws QuitGameException {
+        writer.println("Proszę wprowadzić ilość znaków pod rząd, która zapewnie wygraną: ");
+        writer.flush();
         Integer winningCondition = null;
         while (winningCondition == null) {
-            Integer tmp = integerInputReader.read();
-            if (tmp <= biggerSize && tmp > 0) {
-                winningCondition = tmp;
-            } else {
-                System.out.println("Przy podanym warunku zwycięstwa gry nie da się wygrać. Proszę podaj inny");
+            try {
+                String readFromStream = reader.readLine();
+                Integer tmp = Integer.valueOf(readFromStream);
+                if (tmp <= biggerSize && tmp > 0) {
+                    winningCondition = tmp;
+                } else {
+                    System.out.println("Przy podanym warunku zwycięstwa gry nie da się wygrać. Proszę podaj inny");
+                }
+            } catch (IOException e) {
+                System.err.println("Błąd podczas podawania warunku zwycięztwa");
             }
         }
         return winningCondition;
