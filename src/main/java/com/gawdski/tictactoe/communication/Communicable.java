@@ -30,7 +30,7 @@ public interface Communicable {
 
     Integer askPlayerForFieldId(String playerName) throws QuitGameException;
 
-    Integer askWinningCondition() throws QuitGameException;
+    Integer askWinningCondition(int biggerSize) throws QuitGameException;
 
     void informAboutUnavailableField();
 
