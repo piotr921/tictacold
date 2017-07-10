@@ -66,9 +66,18 @@ class EnglishLanguage implements Communicable {
     }
 
     @Override
-    public Integer askWinningCondition() throws QuitGameException {
+    public Integer askWinningCondition(int biggerSize) throws QuitGameException {
         System.out.println("Please select how many symbols in line provide win: ");
-        return integerInputReader.read();
+        Integer winningCondition = null;
+        while (winningCondition == null) {
+            Integer tmp = integerInputReader.read();
+            if (tmp <= biggerSize && tmp > 0) {
+                winningCondition = tmp;
+            } else {
+                System.out.println("Win will be impossible with this winning condition. Please type another one");
+            }
+        }
+        return winningCondition;
     }
 
     @Override

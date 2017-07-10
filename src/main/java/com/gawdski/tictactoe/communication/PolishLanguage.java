@@ -66,9 +66,18 @@ class PolishLanguage implements Communicable {
     }
 
     @Override
-    public Integer askWinningCondition() throws QuitGameException {
+    public Integer askWinningCondition(int biggerSize) throws QuitGameException {
         System.out.println("Proszę wprowadzić ilość znaków pod rząd, która zapewnie wygraną: ");
-        return integerInputReader.read();
+        Integer winningCondition = null;
+        while (winningCondition == null) {
+            Integer tmp = integerInputReader.read();
+            if (tmp <= biggerSize && tmp > 0) {
+                winningCondition = tmp;
+            } else {
+                System.out.println("Przy podanym warunku zwycięstwa gry nie da się wygrać. Proszę podaj inny");
+            }
+        }
+        return winningCondition;
     }
 
     @Override

@@ -20,7 +20,7 @@ class MatchEngine {
 
         boardWidth = messanger.askForBoardWidth(3, 1000);
         boardHeight = messanger.askForBoardHeight(3, 1000);
-        needToWin = messanger.askWinningCondition();
+        needToWin = messanger.askWinningCondition(selectBiggerSize(boardWidth, boardHeight));
         players = new Players();
         players.initializePlayers(
                 messanger.askForStartingSymbol(),
@@ -47,5 +47,9 @@ class MatchEngine {
             gameId++;
         }
 
+    }
+
+    int selectBiggerSize(int boardWidth, int boardHeight) {
+        return boardWidth >= boardHeight ? boardWidth : boardHeight;
     }
 }
